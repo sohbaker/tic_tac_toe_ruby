@@ -11,4 +11,10 @@ class Board
         ---------
         #{@board[6]} | #{@board[7]} | #{@board[8]}"""
     end
+
+    def mark_board(move, player)
+        position = move - 1
+        @board[position] = player
+        print_board()
+    end
 end
