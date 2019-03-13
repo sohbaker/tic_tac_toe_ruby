@@ -17,4 +17,9 @@ class Board
         @board[position] = player
         print_board()
     end
+
+    def is_valid_move(move)
+        position = move - 1
+        return @board[position].is_a?(Integer)
+    end
 end
