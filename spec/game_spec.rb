@@ -20,4 +20,10 @@ RSpec.describe Game do
         game = Game.new
         expect(game.get_player2).to eq('O')
     end
+
+    it "allows the player to make a move if the move is valid" do
+        game = Game.new
+        game.show_board
+        expect(game.make_move(1)).to eq(true)
+    end
 end

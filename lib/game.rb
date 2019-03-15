@@ -5,6 +5,7 @@ class Game
     def initialize
         @board = Board.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
         @player = Player.new
+        @current_player = @player.player1
     end
 
     def show_board
@@ -17,5 +18,13 @@ class Game
 
     def get_player2
         @player.player2
+    end
+
+    def make_move(position)
+        if @board.is_valid_move(position) 
+            @board.mark_board(position, @current_player)
+            return true
+        end
+        return false
     end
 end
