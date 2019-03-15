@@ -2,8 +2,8 @@ require 'board'
 require 'player'
 
 class Game
-    def initialize
-        @board = Board.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    def initialize(board)
+        @board = Board.new(board)
         @player = Player.new
         @current_player = @player.player1
     end
