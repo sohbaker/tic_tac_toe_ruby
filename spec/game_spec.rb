@@ -33,4 +33,9 @@ RSpec.describe Game do
         game.make_move(2)
         expect(game.has_player_won).to eq(false)
     end
+
+    it "switches the player" do
+        game = Game.new
+        expect(game.switch_player).to eq('O')
+    end
 end
