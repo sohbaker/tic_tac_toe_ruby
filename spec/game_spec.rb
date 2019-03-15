@@ -10,4 +10,14 @@ RSpec.describe Game do
         ---------
         7 | 8 | 9""")
     end
+
+    it "retrieves the mark for player 1" do
+        game = Game.new
+        expect(game.get_player1).to eq('X')
+    end
+
+    it "retrieves the mark for player 2" do
+        game = Game.new
+        expect(game.get_player2).to eq('O')
+    end
 end

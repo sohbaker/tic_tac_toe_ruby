@@ -1,24 +1,14 @@
 class Player
     def initialize
-        @player1 = ""
-        @player2 = ""
-        @marks = ["X", "O"]
-    end
-
-    def set_players(choice)
-        @marks.each do | mark |
-            if choice.upcase != mark
-                @player2 = mark
-            end
-        @player1 = choice.upcase
-        end
-    end   
+        @player1 = "X"
+        @player2 = "O"
+    end 
     
     def player1
-        @player1
+        return @player1
     end
 
     def player2
-        @player2
+        return @player2
     end
 end
