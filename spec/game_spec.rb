@@ -48,4 +48,17 @@ RSpec.describe Game do
         game = Game.new([1, 2, 'X', 4, 'O', 6, 7, 'X', 9])
         expect(game.game_can_continue).to eq(true)
     end
+
+    it "doesn't allow a player to make a move that's already taken" do
+        game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        game.make_move(2, game.current_player)
+        game.switch_player
+        game.make_move(2, game.current_player)
+        expect(game.show_board).to eq("""
+        1 | X | 3
+        ---------
+        4 | 5 | 6
+        ---------
+        7 | 8 | 9""")
+    end
 end
