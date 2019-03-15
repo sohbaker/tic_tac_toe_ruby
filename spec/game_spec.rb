@@ -36,6 +36,11 @@ RSpec.describe Game do
 
     it "displays a message to say player has won the game" do
         game = Game.new(["O", "X", 3, "O", "X", 6, 7, "X", 9])
-        expect(game.winning_message).to eq("X wins!")
+        expect(game.is_tie_or_is_won).to eq("X wins!")
+    end
+
+    it "knows the game has ended with a tie and displays message" do
+        game = Game.new(["X", "X", "O", "O", "X", "X", "X", "O", "O"])
+        expect(game.is_tie_or_is_won).to eq("It's a tie!")
     end
 end

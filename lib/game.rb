@@ -42,8 +42,10 @@ class Game
         return @current_player
     end
 
-    def winning_message
-        if has_player_won(@current_player)
+    def is_tie_or_is_won
+        if @board.game_is_a_tie
+            return "It's a tie!"
+        elsif has_player_won(@current_player)
             return "#{@current_player} wins!"
         end
     end
