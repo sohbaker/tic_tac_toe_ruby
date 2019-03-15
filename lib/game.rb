@@ -27,4 +27,12 @@ class Game
         end
         return false
     end
+
+    def has_player_won
+        if @board.has_current_player_won(@current_player) == false
+            return false
+        else 
+            return true
+        end
+    end
 end

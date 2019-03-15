@@ -26,4 +26,11 @@ RSpec.describe Game do
         game.show_board
         expect(game.make_move(1)).to eq(true)
     end
+
+    it "checks if the current player has won after making their move" do
+        game = Game.new
+        game.show_board
+        game.make_move(2)
+        expect(game.has_player_won).to eq(false)
+    end
 end
