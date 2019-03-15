@@ -25,7 +25,7 @@ class Game
     end
 
     def has_player_won(mark)
-        if @board.has_current_player_won(@current_player) == false
+        if @board.has_current_player_won(@current_player) == false && @board.game_is_a_tie == false
             return false
         else 
             return true
@@ -48,5 +48,13 @@ class Game
         elsif has_player_won(@current_player)
             return "#{@current_player} wins!"
         end
+        return false
+    end
+
+    def game_can_continue
+        if is_tie_or_is_won == false
+            return true
+        end
+        return false
     end
 end
