@@ -36,13 +36,11 @@ class Board
 
     def has_current_player_won(mark)
         @winning_combinations.each do | combi |
-            combi.each do | cell |
-               position1 = cell[0]
-               position2 = cell[1]
-               position3 = cell[2]
-               if @board[position1] === mark && @board[position2] === mark && @board[position2] === mark
+            position1 = combi[0]
+            position2 = combi[1]
+            position3 = combi[2]
+            if @board[position1] == mark && @board[position2] == mark && @board[position2] == mark
                 @check_combinations = true
-               end
             end
         end
         return @check_combinations
@@ -55,6 +53,6 @@ class Board
                 moves += 1
             end
         end
-        return moves === 9 && @check_combinations === false
+        return moves == 9 && @check_combinations == false
     end
 end
