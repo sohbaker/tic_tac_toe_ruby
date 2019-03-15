@@ -11,27 +11,17 @@ RSpec.describe Game do
         7 | 8 | 9""")
     end
 
-    it "retrieves the mark for player 1" do
-        game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-        expect(game.get_player1).to eq('X')
-    end
-
-    it "retrieves the mark for player 2" do
-        game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-        expect(game.get_player2).to eq('O')
-    end
-
     it "allows the player to make a move if the move is valid" do
         game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
         game.show_board
-        expect(game.make_move(1)).to eq(true)
+        expect(game.make_move(1, game.current_player)).to eq(true)
     end
 
     it "checks if the current player has won after making their move" do
         game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
         game.show_board
-        game.make_move(2)
-        expect(game.has_player_won).to eq(false)
+        game.make_move(2, game.current_player)
+        expect(game.has_player_won('X')).to eq(false)
     end
 
     it "switches the player" do
@@ -40,7 +30,12 @@ RSpec.describe Game do
     end
 
     it "knows when player has won the game" do
-        game = Game.new(["O", "X", 3, "O", "X", 6, "O", "X", "9"])
-        expect(game.has_player_won).to eq(true)
+        game = Game.new(["O", "X", 3, "O", "X", 6, 7, "X", 9])
+        expect(game.has_player_won(game.current_player)).to eq(true)
+    end
+
+    it "displays a message to say player has won the game" do
+        game = Game.new(["O", "X", 3, "O", "X", 6, 7, "X", 9])
+        expect(game.winning_message).to eq("X wins!")
     end
 end

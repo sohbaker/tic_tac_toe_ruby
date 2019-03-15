@@ -12,15 +12,11 @@ class Game
         @board.print_board
     end
 
-    def get_player1
-        @player.player1
+    def current_player
+        @current_player
     end
 
-    def get_player2
-        @player.player2
-    end
-
-    def make_move(position)
+    def make_move(position, player)
         if @board.is_valid_move(position) 
             @board.mark_board(position, @current_player)
             return true
@@ -28,7 +24,7 @@ class Game
         return false
     end
 
-    def has_player_won
+    def has_player_won(mark)
         if @board.has_current_player_won(@current_player) == false
             return false
         else 
@@ -44,5 +40,11 @@ class Game
             @current_player = @player.player1
         end
         return @current_player
+    end
+
+    def winning_message
+        if has_player_won(@current_player)
+            return "#{@current_player} wins!"
+        end
     end
 end
