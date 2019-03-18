@@ -43,7 +43,6 @@ class Board
                 @check_combinations = true
             end
         end
-        p @check_combinations
         return @check_combinations
     end
 
