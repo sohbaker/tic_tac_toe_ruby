@@ -1,8 +1,8 @@
 require 'game'
 
 class Controller 
-    def initialize
-        @game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    def initialize(board)
+        @game = Game.new(board)
         @current_player = @game.current_player
     end
 
@@ -27,5 +27,9 @@ class Controller
 
     def current_player
         @current_player
+    end
+
+    def can_continue_playing
+        return @game.game_can_continue
     end
 end
