@@ -1,4 +1,6 @@
 require 'controller'
+require 'game'
+require 'board'
 
 RSpec.describe Controller do
     it "allows player 'X' to make their first move" do
@@ -32,7 +34,7 @@ RSpec.describe Controller do
     end
 
     it "checks if the game can continue and returns false when the game has ended due to a tie" do
-        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
         controller.take_turn(2)
         controller.take_turn(1)
         controller.take_turn(3)
@@ -52,7 +54,20 @@ RSpec.describe Controller do
         controller.take_turn(2)
         controller.take_turn(6)
         controller.take_turn(3)
-        p controller.prints_board
         expect(controller.can_continue_playing()).to eq(false)
+    end
+
+    it "returns 'it's a tie' when the game has ended and resulted in a tie" do
+        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+        controller.take_turn(5)
+        controller.take_turn(3)
+        controller.take_turn(7)
+        controller.take_turn(1)
+        controller.take_turn(2)
+        controller.take_turn(8)
+        controller.take_turn(6)
+        controller.take_turn(4)
+        controller.take_turn(9)
+        expect(controller.display_is_tie_or_is_won).to eq("It's a tie!")
     end
 end

@@ -7,11 +7,11 @@ class Controller
     end
 
     def take_turn(position)
-        if @game.make_move(position, @current_player) == true && can_continue_playing == true
+        if @game.make_move(position, @current_player) == true && @game.game_can_continue == true
             toggle_player()
             return true
         else
-            puts "invalid move"
+            puts "invalid move #{position}, #{@current_player}"
             return false
         end
     end
@@ -31,5 +31,9 @@ class Controller
 
     def can_continue_playing
         return @game.game_can_continue
+    end
+
+    def display_is_tie_or_is_won
+        return @game.is_tie_or_is_won
     end
 end
