@@ -7,8 +7,10 @@ class Controller
     end
 
     def take_turn(position)
-        if @game.make_move(position, @current_player) == true && @game.game_can_continue == true
-            toggle_player()
+        if @game.make_move(position, @current_player) == true 
+            if @game.game_can_continue == true
+                toggle_player()
+            end
             return true
         else
             puts "invalid move #{position}, #{@current_player}"
