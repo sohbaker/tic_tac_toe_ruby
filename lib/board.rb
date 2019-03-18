@@ -11,11 +11,10 @@ class Board
             [2, 4, 6],
             [0, 4, 8]
         ]
-        @check_combinations = false
     end
 
-    def print_board
-        return """
+    def board
+        """
         #{@board[0]} | #{@board[1]} | #{@board[2]}
         ---------
         #{@board[3]} | #{@board[4]} | #{@board[5]}
@@ -26,33 +25,33 @@ class Board
     def mark_board(move, player)
         position = move - 1
         @board[position] = player
-        print_board()
+        board
     end
 
-    def is_valid_move(move)
+    def is_valid_move?(move)
         position = move - 1
-        return @board[position].is_a?(Integer)
+        @board[position].is_a?(Integer)
     end
 
-    def has_current_player_won(mark)
+    def current_player_wins?(mark)
+        # enumerable method - all? check whether the condition is the same for all
         @winning_combinations.each do | combination |
             position1 = combination[0]
             position2 = combination[1]
             position3 = combination[2]
             if @board[position1] == mark && @board[position2] == mark && @board[position3] == mark
-                @check_combinations = true
+                true
             end
         end
-        return @check_combinations
     end
 
-    def game_is_a_tie
+    def is_full?
         moves = 0
         @board.each do | el |
             if el.is_a?(String)
                 moves += 1
             end
         end
-        return moves == 9 && @check_combinations == false
+        moves == 9
     end
 end

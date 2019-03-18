@@ -9,26 +9,19 @@ class Game
     end
 
     def show_board
-        @board.print_board
+        @board.board
     end
 
     def current_player
-        return @current_player
+        @current_player
     end
 
-    def make_move(position, player)
-        if @board.is_valid_move(position) 
+    def make_move(position)
+        if @board.is_valid_move?(position) 
             @board.mark_board(position, @current_player)
             return true
         end
-        return false
-    end
-
-    def has_player_won(mark)
-        if @board.has_current_player_won(@current_player) == true
-            return true
-        end
-        return false
+        false
     end
 
     def switch_player
@@ -37,23 +30,28 @@ class Game
         else
             @current_player = @player.player1
         end
-        return @current_player
     end
 
-    def is_tie_or_is_won
-        if @board.game_is_a_tie == true
-            return "It's a tie!"
-        elsif has_player_won(@current_player) == true
-            return "#{@current_player} wins!"
+    def has_player_won?(mark)
+        if @board.current_player_wins?(@current_player)
+            "#{@current_player} wins!"
         end
-        return false
+        false
     end
 
-    def game_can_continue
-        if is_tie_or_is_won == false
-            return true
-        else
-            return false
+    def is_a_tie?
+        if @board.is_full?
+            "It's a tie!"
         end
+        false
+    end
+
+    def is_over?
+        if is_a_tie? 
+            is_a_tie?
+        elsif has_player_won?(current_player)
+            has_player_won?(current_player)
+        end
+        false
     end
 end
