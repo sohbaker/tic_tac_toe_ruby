@@ -70,4 +70,14 @@ RSpec.describe Controller do
         controller.take_turn(9)
         expect(controller.display_is_tie_or_is_won).to eq("It's a tie!")
     end
+
+    it "returns 'x wins' when the game has ended becaus eplayer x has won" do
+        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+        controller.take_turn(1)
+        controller.take_turn(4)
+        controller.take_turn(2)
+        controller.take_turn(6)
+        controller.take_turn(3)
+        expect(controller.display_is_tie_or_is_won).to eq("X wins!")
+    end
 end
