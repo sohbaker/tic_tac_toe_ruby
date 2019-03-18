@@ -80,4 +80,19 @@ RSpec.describe Controller do
         controller.take_turn(3)
         expect(controller.display_is_tie_or_is_won).to eq("X wins!")
     end
+
+    it "allows player to select a new move after making an invalid choice" do
+        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+        controller.take_turn(1)
+        controller.take_turn(4)
+        controller.take_turn(2)
+        controller.take_turn(2)
+        controller.take_turn(3)
+        expect(controller.prints_board).to eq("""
+        X | X | O
+        ---------
+        O | 5 | 6
+        ---------
+        7 | 8 | 9""")
+    end
 end
