@@ -12,4 +12,8 @@ class Controller
     def prints_board
         @game.show_board
     end
+
+    def toggle_player
+        @game.switch_player
+    end
 end
