@@ -35,8 +35,7 @@ class Game
     def switch_player
         if @current_player == @player.player1
             @current_player = @player.player2
-        elsif 
-            @current_player == @player.player2
+        else
             @current_player = @player.player1
         end
         return @current_player

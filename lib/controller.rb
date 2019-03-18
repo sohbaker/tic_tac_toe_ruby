@@ -3,10 +3,17 @@ require 'game'
 class Controller 
     def initialize
         @game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        @current_player = @game.current_player
     end
 
     def take_turn(position)
-        @game.make_move(position, @game.current_player)
+        if @game.make_move(position, @current_player) == true
+            toggle_player()
+            return true
+        else
+            puts "invalid move"
+            return false
+        end
     end
 
     def prints_board
@@ -15,5 +22,10 @@ class Controller
 
     def toggle_player
         @game.switch_player
+        @current_player = @game.current_player
+    end
+
+    def current_player
+        @current_player
     end
 end
