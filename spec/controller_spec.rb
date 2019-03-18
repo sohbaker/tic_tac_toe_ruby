@@ -31,7 +31,7 @@ RSpec.describe Controller do
         expect(controller.current_player).to eq('O')
     end
 
-    it "returns false when the game has ended due to a tie" do
+    it "checks if the game can continue and returns false when the game has ended due to a tie" do
         controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
         controller.take_turn(2)
         controller.take_turn(1)
@@ -42,6 +42,17 @@ RSpec.describe Controller do
         controller.take_turn(8)
         controller.take_turn(7)
         controller.take_turn(9)
+        expect(controller.can_continue_playing()).to eq(false)
+    end
+
+    it "checks if the game can continue and returns false when the game has ended because a player has won" do
+        controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+        controller.take_turn(1)
+        controller.take_turn(4)
+        controller.take_turn(2)
+        controller.take_turn(6)
+        controller.take_turn(3)
+        p controller.prints_board
         expect(controller.can_continue_playing()).to eq(false)
     end
 end
