@@ -13,7 +13,7 @@ class Game
     end
 
     def current_player
-        @current_player
+        return @current_player
     end
 
     def make_move(position, player)
