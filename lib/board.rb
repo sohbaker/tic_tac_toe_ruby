@@ -34,15 +34,15 @@ class Board
     end
 
     def current_player_wins?(mark)
-        # enumerable method - all? check whether the condition is the same for all
         @winning_combinations.each do | combination |
             position1 = combination[0]
             position2 = combination[1]
             position3 = combination[2]
             if @board[position1] == mark && @board[position2] == mark && @board[position3] == mark
-                true
-            end
+                return true
+            end 
         end
+        return false
     end
 
     def is_full?
