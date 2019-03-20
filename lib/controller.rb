@@ -9,12 +9,12 @@ class Controller
     print "Welcome to Tic Tac Toe"
     print "\nTo make a move enter the number of the position you want to play"
     print "\nPlayer1's mark is 'X' and Player2's mark is 'O'"
-    print "\nThe game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken"
+    print "\nThe game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
   end
 
   def play_turns_until_game_is_over
     while !@game.is_over?
-      print "#{@game.show_board}\nPlayer #{@game.current_player}, make a move: "
+      print "#{@game.show_board}\n\nPlayer #{@game.current_player}, make a move: "
       position = $stdin.gets.chomp.to_i
       if @game.make_move(position)
         toggle_player
@@ -35,9 +35,9 @@ class Controller
   def show_end_of_game_message
     print "#{@game.show_board}\n"
     if @game.is_a_tie?
-      print "#{@game.is_a_tie?}\n"
+      print "\n#{@game.is_a_tie?}\n"
     elsif @game.has_player_won?(@game.current_player)
-      print "#{@game.has_player_won?(@game.current_player)}\n"
+      print "\n#{@game.has_player_won?(@game.current_player)}\n"
     end
     exit(0)
   end
