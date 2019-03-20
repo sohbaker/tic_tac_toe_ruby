@@ -1,10 +1,10 @@
 require "controller"
 
-RSpec.configure do |config|
-  config.mock_with :rspec
-end
+# RSpec.configure do |config|
+#   config.mock_with :rspec
+# end
 
-describe Controller do
+RSpec.describe Controller do
   it "returns 'it's a tie' when the game has ended and resulted in a tie" do
     allow($stdin).to receive(:gets).and_return("8")
     controller = Controller.new(["X", "O", "X", "X", "O", "O", "O", 8, "X"])

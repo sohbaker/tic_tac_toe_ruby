@@ -26,17 +26,18 @@ class Controller
 
   def toggle_player
     if @game.is_over?
-      end_of_game
+      show_end_of_game_message
     else
       @game.switch_player
     end
   end
 
-  def end_of_game
+  def show_end_of_game_message
+    print "#{@game.show_board}\n"
     if @game.is_a_tie?
-      return @game.is_a_tie?
+      print "#{@game.is_a_tie?}\n"
     elsif @game.has_player_won?(@game.current_player)
-      return @game.has_player_won?(@game.current_player)
+      print "#{@game.has_player_won?(@game.current_player)}\n"
     end
     exit(0)
   end
