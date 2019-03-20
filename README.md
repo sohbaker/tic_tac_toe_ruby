@@ -7,7 +7,7 @@ Core Goals
 - [x] Displays a board
 - [x] Takes a user input from the players to place mark on the board
 - [x] Game runs based on moves and evaluates whether the game is can continue
-- [] End of game message (knows who won or whether there was a tie)
+- [x] End of game message (knows who won or whether there was a tie)
 
 ## Language
 This application is written in Ruby. 
