@@ -1,14 +1,14 @@
 class Player
-    def initialize
-        @player1 = "X"
-        @player2 = "O"
-    end 
-    
-    def player1
-        return @player1
-    end
+  def initialize
+    @player1 = "X"
+    @player2 = "O"
+  end
 
-    def player2
-        return @player2
-    end
+  def player1
+    @player1
+  end
+
+  def player2
+    @player2
+  end
 end
