@@ -5,10 +5,10 @@ class Player
   end
 
   def player1
-    return @player1
+    @player1
   end
 
   def player2
-    return @player2
+    @player2
   end
 end
