@@ -6,16 +6,16 @@ class Controller
   end
 
   def greet_players
-    puts "Welcome to Tic Tac Toe"
-    puts "To make a move enter the number of the position you want to play"
-    puts "Player1's mark is 'X' and Player2's mark is 'O'"
-    puts "The game will end either when there's a tie or a player wins by placing their mark across a row, column or diagonally"
+    print "Welcome to Tic Tac Toe"
+    print "To make a move enter the number of the position you want to play"
+    print "Player1's mark is 'X' and Player2's mark is 'O'"
+    print "The game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken"
   end
 
   def play_turn
+    p !@game.is_over?
     while !@game.is_over?
-      print @game.show_board
-      print "\n"
+      print "#{@game.show_board}\n"
       position = gets.chomp.to_i
       if @game.make_move(position)
         toggle_player

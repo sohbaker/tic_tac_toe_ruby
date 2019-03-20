@@ -1,6 +1,4 @@
 require "controller"
-require "game"
-require "board"
 
 RSpec.describe Controller do
   # it "returns 'it's a tie' when the game has ended and resulted in a tie" do

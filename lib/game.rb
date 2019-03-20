@@ -50,8 +50,8 @@ class Game
 
   def is_over?
     if is_a_tie? || has_player_won?(current_player)
-      true
+      return true # needs a specific return instruction here
     end
-    false
+    return false
   end
 end
