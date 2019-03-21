@@ -1,21 +1,24 @@
 require "controller"
-
-RSpec.configure do |config|
-  config.mock_with :rspec
-end
+require "display_double"
 
 describe Controller do
   it "returns 'it's a tie' when the game has ended and resulted in a tie" do
-    allow($stdin).to_receive(:gets).and_return("8")
-    controller = Controller.new(["X", "O", "X", "X", "O", "O", "O", 8, "X"])
+    display = DisplayDouble.new([9, 5, 1, 6, 4, 7, 3, 2, 8])
+    allow(display).to receive(:announce_tie)
+    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    controller = Controller.new(board, display)
+    controller.play_game
 
-    expect(controller.end_of_game).to eq("It's a tie!")
+    expect(display).to have_received(:announce_tie)
   end
 
   it "returns 'x wins' when the game has ended because player x has won the game" do
-    allow($stdin).to_receive(:gets).and_return("2")
-    controller = Controller.new(["X", 2, "X", "O", 5, 6, "O", 8, 9])
+    display = DisplayDouble.new([1, 4, 2, 5, 3])
+    allow(display).to receive(:announce_win)
+    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    controller = Controller.new(board, display)
+    controller.play_game
 
-    expect(controller.end_of_game).to eq("X wins!")
+    expect(display).to have_received(:announce_win)
   end
 end
