@@ -4,10 +4,10 @@ class Display
   end
 
   def announce_tie
-    puts "It's a tie!"
+    "It's a tie!"
   end
 
   def announce_win
-    puts " wins!"
+    " wins!"
   end
 end

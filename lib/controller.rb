@@ -39,10 +39,11 @@ class Controller
   end
 
   def show_end_of_game_message
+    puts @game.show_board
     if @game.is_a_tie?
-      @display.announce_tie
+      puts @display.announce_tie
     else
-      "#{@game.current_player}" + " #{@display.announce_win}"
+      puts "#{@game.current_player} #{@display.announce_win}"
     end
   end
 end
