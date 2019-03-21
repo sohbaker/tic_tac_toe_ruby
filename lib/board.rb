@@ -23,15 +23,20 @@ class Board
     #{@board[6]} | #{@board[7]} | #{@board[8]}" ""
   end
 
-  def mark_board(move, player)
-    position = move - 1
-    @board[position] = player
+  def mark_board(move, mark)
+    position = move.to_i - 1
+    @board[position] = mark
     board
   end
 
-  def is_valid_move?(move)
-    position = move - 1
-    @board[position].is_a?(Integer)
+  def available_moves
+    available_moves = []
+    @board.each do |spot|
+      if spot != "X" && spot != "O"
+        available_moves.push(spot)
+      end
+    end
+    available_moves
   end
 
   def current_player_wins?(mark)
@@ -41,12 +46,6 @@ class Board
   end
 
   def is_full?
-    moves = 0
-    @board.each do |el|
-      if el.is_a?(String)
-        moves += 1
-      end
-    end
-    moves == 9
+    available_moves.empty?
   end
 end

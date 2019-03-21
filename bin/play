@@ -10,6 +10,6 @@ require "player"
 require "display"
 
 display = Display.new
-board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-controller = Controller.new(board, display)
-controller.play_game
+board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+game = Game.new(board, display)
+game.play_game
