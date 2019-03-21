@@ -1,8 +1,9 @@
 require "game"
 
 class Controller
-  def initialize(board)
+  def initialize(board, display)
     @game = Game.new(board)
+    @display = display
   end
 
   def greet_players
@@ -12,37 +13,36 @@ class Controller
     print "\nThe game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
   end
 
-  def play_turns_until_game_is_over
+  def play_turn
+    move = @display.get_move
+    @game.make_move(move)
+  end
+
+  def evaluate_turn
+    if !@game.is_over?
+      toggle_player
+    end
+  end
+
+  def play_game
     while !@game.is_over?
       print "#{@game.show_board}\n\nPlayer #{@game.current_player}, make a move: "
-      position = $stdin.gets.chomp.to_i
-      if @game.make_move(position)
-        toggle_player
-      else
-        print "invalid move"
-      end
+      play_turn
+      evaluate_turn
+      # toggle_player
     end
+    show_end_of_game_message
   end
 
   def toggle_player
-    if @game.is_over?
-      show_end_of_game_message
-    else
-      @game.switch_player
-    end
+    @game.switch_player
   end
 
   def show_end_of_game_message
-    print "#{@game.show_board}\n"
     if @game.is_a_tie?
-      print "\n#{@game.is_a_tie?}\n"
-    elsif @game.has_player_won?(@game.current_player)
-      print "\n#{@game.has_player_won?(@game.current_player)}\n"
+      @display.announce_tie
+    else
+      "#{@game.current_player}" + " #{@display.announce_win}"
     end
-    exit(0)
   end
 end
-
-controller = Controller.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-controller.greet_players
-controller.play_turns_until_game_is_over

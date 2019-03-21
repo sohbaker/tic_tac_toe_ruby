@@ -29,14 +29,14 @@ RSpec.describe Game do
     expect(game.switch_player).to eq("O")
   end
 
-  it "knows when a player has won the game and displays message" do
+  it "knows when a player has won the game" do
     game = Game.new(["O", "X", 3, "O", "X", 6, 7, "X", 9])
-    expect(game.has_player_won?(game.current_player)).to eq("X wins!")
+    expect(game.has_player_won?(game.current_player)).to eq(true)
   end
 
-  it "knows the game has ended with a tie and displays message" do
+  it "knows the game has ended with a tie" do
     game = Game.new(["X", "X", "O", "O", "X", "X", "X", "O", "O"])
-    expect(game.is_a_tie?).to eq("It's a tie!")
+    expect(game.is_a_tie?).to eq(true)
   end
 
   it "knows that the game can continue" do

@@ -1,16 +1,17 @@
 class Board
+  WINNING_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8],
+  ]
+
   def initialize(board)
     @board = board
-    @winning_combinations = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [2, 4, 6],
-      [0, 4, 8],
-    ]
   end
 
   def board
@@ -34,15 +35,9 @@ class Board
   end
 
   def current_player_wins?(mark)
-    @winning_combinations.each do |combination|
-      position1 = combination[0]
-      position2 = combination[1]
-      position3 = combination[2]
-      if @board[position1] == mark && @board[position2] == mark && @board[position3] == mark
-        return true
-      end
+    WINNING_COMBINATIONS.any? do |combination|
+      combination.all? { |position| @board[position] == mark }
     end
-    return false
   end
 
   def is_full?
