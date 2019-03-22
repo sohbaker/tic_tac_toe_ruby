@@ -1,5 +1,6 @@
 require "game"
 require "display"
+require "display_double"
 
 RSpec.describe Game do
   def brand_new_game
@@ -18,6 +19,14 @@ RSpec.describe Game do
     display = Display.new
     board = ["X", "X", "O", "O", "X", "X", "X", "O", "O"]
     Game.new(board, display)
+  end
+
+  def tied_game_move_sequence
+    ["9", "5", "1", "6", "4", "7", "3", "2", "8"]
+  end
+
+  def player_x_wins_move_sequence
+    ["1", "4", "2", "5", "3"]
   end
 
   it "creates a new board" do
@@ -59,5 +68,25 @@ RSpec.describe Game do
   it "knows that the game can continue" do
     game = game_in_progress
     expect(game.is_over?).to eq(false)
+  end
+
+  it "returns 'it's a tie' when the game has ended and resulted in a tie" do
+    display = DisplayDouble.new(tied_game_move_sequence)
+    allow(display).to receive(:announce_tie)
+    board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    game = Game.new(board, display)
+    game.play_game
+
+    expect(display).to have_received(:announce_tie)
+  end
+
+  it "returns 'x wins' when the game has ended because player x won" do
+    display = DisplayDouble.new(player_x_wins_move_sequence)
+    allow(display).to receive(:announce_win)
+    board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    game = Game.new(board, display)
+    game.play_game
+
+    expect(display).to have_received(:announce_win)
   end
 end

@@ -1,13 +1,4 @@
 class Display
-  #   def get_move(board)
-  #     move = gets.chomp
-  #     while !board.is_valid_move?(move)
-  #       puts "invalid move"
-  #       move = gets.chomp
-  #     end
-  #     move
-  #   end
-
   def get_move(board)
     input = gets.chomp
     while !valid?(input, board)
@@ -18,7 +9,6 @@ class Display
   end
 
   def valid?(input, board)
-    # ["1", "4", "3"]
     board.available_moves.include?(input)
   end
 
