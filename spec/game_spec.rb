@@ -15,9 +15,16 @@ RSpec.describe Game do
   end
 
   it "allows the player to make a move if the move is valid" do
-    game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    display = Display.new
+    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    game = Game.new(board, display)
     game.show_board
-    expect(game.make_move(1)).to eq(true)
+    expect(game.make_move(1)).to eq("" "
+    X | 2 | 3
+    ---------
+    4 | 5 | 6
+    ---------
+    7 | 8 | 9" "")
   end
 
   it "checks if the current player has won" do
