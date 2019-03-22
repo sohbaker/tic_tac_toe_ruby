@@ -2,10 +2,14 @@ require "game"
 require "display"
 
 RSpec.describe Game do
-  it "creates a new board" do
+  def brand_new_game
     display = Display.new
     board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    game = Game.new(board, display)
+    Game.new(board, display)
+  end
+
+  it "creates a new board" do
+    game = brand_new_game
     expect(game.show_board).to eq("" "
     1 | 2 | 3
     ---------
@@ -15,10 +19,7 @@ RSpec.describe Game do
   end
 
   it "allows the player to make a move if the move is valid" do
-    display = Display.new
-    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    game = Game.new(board, display)
-    game.show_board
+    game = brand_new_game
     expect(game.make_move(1)).to eq("" "
     X | 2 | 3
     ---------
