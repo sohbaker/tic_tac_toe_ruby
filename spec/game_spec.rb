@@ -4,7 +4,13 @@ require "display"
 RSpec.describe Game do
   def brand_new_game
     display = Display.new
-    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    Game.new(board, display)
+  end
+
+  def player_x_wins
+    display = Display.new
+    board = ["O", "X", "3", "O", "X", "6", "7", "X", "9"]
     Game.new(board, display)
   end
 
@@ -40,8 +46,8 @@ RSpec.describe Game do
   end
 
   it "knows when a player has won the game" do
-    game = Game.new(["O", "X", 3, "O", "X", 6, 7, "X", 9])
-    expect(game.has_player_won?(game.current_player)).to eq(true)
+    game = player_x_wins
+    expect(game.has_player_won?(game.current_player)).to be(true)
   end
 
   it "knows the game has ended with a tie" do

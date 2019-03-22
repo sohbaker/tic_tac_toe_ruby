@@ -7,7 +7,7 @@ class Game
   def initialize(board, display)
     @board = Board.new(board)
     @player = Player.new
-    @current_player = @player.player1 # need to change this?
+    @current_player = @player.player1
     @display = display
   end
 
