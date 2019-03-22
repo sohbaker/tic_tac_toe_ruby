@@ -8,9 +8,15 @@ RSpec.describe Game do
     Game.new(board, display)
   end
 
-  def player_x_wins
+  def game_in_progress
     display = Display.new
-    board = ["O", "X", "3", "O", "X", "6", "7", "X", "9"]
+    board = ["O", "X", "3", "O", "5", "6", "7", "X", "9"]
+    Game.new(board, display)
+  end
+
+  def game_is_tied
+    display = Display.new
+    board = ["X", "X", "O", "O", "X", "X", "X", "O", "O"]
     Game.new(board, display)
   end
 
@@ -34,42 +40,24 @@ RSpec.describe Game do
     7 | 8 | 9" "")
   end
 
-  it "checks if the current player has won" do
-    game = brand_new_game
-    game.make_move(2)
-    expect(game.has_player_won?(game.current_player)).to be(false)
-  end
-
   it "switches the player" do
     game = brand_new_game
     expect(game.toggle_player).to eq("O")
   end
 
   it "knows when a player has won the game" do
-    game = player_x_wins
+    game = game_in_progress
+    game.make_move(5)
     expect(game.has_player_won?(game.current_player)).to be(true)
   end
 
   it "knows the game has ended with a tie" do
-    game = Game.new(["X", "X", "O", "O", "X", "X", "X", "O", "O"])
+    game = game_is_tied
     expect(game.is_a_tie?).to eq(true)
   end
 
   it "knows that the game can continue" do
-    game = Game.new([1, 2, "X", 4, "O", 6, 7, "X", 9])
+    game = game_in_progress
     expect(game.is_over?).to eq(false)
-  end
-
-  it "doesn't allow a player to make a move that's already taken" do
-    game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    game.make_move(2)
-    game.switch_player
-    game.make_move(2)
-    expect(game.show_board).to eq("" "
-    1 | X | 3
-    ---------
-    4 | 5 | 6
-    ---------
-    7 | 8 | 9" "")
   end
 end
