@@ -34,16 +34,16 @@ class Controller
     show_end_of_game_message
   end
 
-  def toggle_player
-    @game.switch_player
-  end
+  # def toggle_player
+  #   @game.switch_player
+  # end
 
-  def show_end_of_game_message
-    puts @game.show_board
-    if @game.is_a_tie?
-      puts @display.announce_tie
-    else
-      puts "#{@game.current_player} #{@display.announce_win}"
-    end
-  end
+  # def show_end_of_game_message
+  #   puts @game.show_board
+  #   if @game.is_a_tie?
+  #     puts @display.announce_tie
+  #   else
+  #     puts "#{@game.current_player} #{@display.announce_win}"
+  #   end
+  # end
 end

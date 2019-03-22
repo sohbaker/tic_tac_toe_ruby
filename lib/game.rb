@@ -29,7 +29,10 @@ class Game
   end
 
   def show_board
-    puts "#{@board.board}"
+    @board.board
+  end
+
+  def prompt_player
     print "\nPlayer #{@current_player}, make a move: "
   end
 
