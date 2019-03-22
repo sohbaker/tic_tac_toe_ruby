@@ -29,8 +29,7 @@ RSpec.describe Game do
   end
 
   it "checks if the current player has won" do
-    game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    game.show_board
+    game = brand_new_game
     game.make_move(2)
     expect(game.has_player_won?(game.current_player)).to eq(false)
   end

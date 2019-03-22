@@ -2,6 +2,8 @@ require "board"
 require "player"
 
 class Game
+  attr_reader :current_player
+
   def initialize(board, display)
     @board = Board.new(board)
     @player = Player.new
