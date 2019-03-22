@@ -31,12 +31,12 @@ RSpec.describe Game do
   it "checks if the current player has won" do
     game = brand_new_game
     game.make_move(2)
-    expect(game.has_player_won?(game.current_player)).to eq(false)
+    expect(game.has_player_won?(game.current_player)).to be(false)
   end
 
   it "switches the player" do
-    game = Game.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    expect(game.switch_player).to eq("O")
+    game = brand_new_game
+    expect(game.toggle_player).to eq("O")
   end
 
   it "knows when a player has won the game" do
