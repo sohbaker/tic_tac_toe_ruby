@@ -12,7 +12,7 @@ class Game
   end
 
   def play_game
-    greet_players
+    @display.greet_players
     while !is_over?
       show_board
       make_move(move)
@@ -23,19 +23,8 @@ class Game
     show_end_of_game_message
   end
 
-  def greet_players
-    puts "Welcome to Tic Tac Toe"
-    puts "To make a move enter the number of the position you want to play"
-    puts "Player1's mark is 'X' and Player2's mark is 'O'"
-    puts "The game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
-  end
-
   def show_board
     @board.board
-  end
-
-  def prompt_player
-    print "\nPlayer #{@current_player}, make a move: "
   end
 
   def move
