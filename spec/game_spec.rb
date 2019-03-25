@@ -16,7 +16,7 @@ RSpec.describe Game do
     7 | 8 | 9" "")
   end
 
-  it "allows the player to make a move if the move is valid" do
+  it "allows the player to make a move" do
     game = get_board.brand_new_game
     expect(game.make_move(1)).to eq("" "
     X | 2 | 3
