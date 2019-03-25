@@ -2,7 +2,7 @@ require "board"
 require "player"
 
 class Game
-  attr_reader :current_player
+  attr_reader :current_player, :board
 
   def initialize(board, display)
     @board = Board.new(board)
@@ -12,7 +12,7 @@ class Game
   end
 
   def play_game
-    @display.greet_players
+    @display.greet_players(self)
     while !is_over?
       show_board
       make_move(move)
@@ -24,7 +24,7 @@ class Game
   end
 
   def show_board
-    @board.board
+    puts @board.board
   end
 
   def move
@@ -58,9 +58,9 @@ class Game
   def show_end_of_game_message
     show_board
     if is_a_tie?
-      puts @display.announce_tie
+      puts "\n#{@display.announce_tie}"
     else
-      puts "#{@current_player} #{@display.announce_win}"
+      puts "\n#{@current_player} #{@display.announce_win}"
     end
   end
 end

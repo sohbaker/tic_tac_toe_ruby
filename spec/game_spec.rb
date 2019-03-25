@@ -6,16 +6,6 @@ require "board_conditions"
 RSpec.describe Game do
   get_board = BoardConditions.new
 
-  it "creates a new board" do
-    game = get_board.brand_new_game
-    expect(game.show_board).to eq("" "
-    1 | 2 | 3
-    ---------
-    4 | 5 | 6
-    ---------
-    7 | 8 | 9" "")
-  end
-
   it "allows the player to make a move" do
     game = get_board.brand_new_game
     expect(game.make_move(1)).to eq("" "

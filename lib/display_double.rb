@@ -1,11 +1,12 @@
-require "game"
-
 class DisplayDouble
+  attr_reader :game
+
   def initialize(moves)
     @moves = moves
   end
 
-  def greet_players
+  def greet_players(game)
+    @game = game
     puts "Welcome to Tic Tac Toe"
     puts "To make a move enter the number of the position you want to play"
     puts "Player1's mark is 'X' and Player2's mark is 'O'"

@@ -1,7 +1,8 @@
-require "game"
-
 class Display
-  def greet_players
+  attr_reader :game
+
+  def greet_players(game)
+    @game = game
     puts "Welcome to Tic Tac Toe"
     puts "To make a move enter the number of the position you want to play"
     puts "Player1's mark is 'X' and Player2's mark is 'O'"
@@ -9,10 +10,11 @@ class Display
   end
 
   def prompt_player
-    print "\nPlayer #{game.current_player}, make a move: "
+    print "\nPlayer #{@game.current_player}, make a move: "
   end
 
   def get_move(board)
+    @game.board.board
     prompt_player
     input = gets.chomp
     while !valid?(input, board)
