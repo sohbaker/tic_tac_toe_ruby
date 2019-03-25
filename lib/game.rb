@@ -4,15 +4,15 @@ require "player"
 class Game
   attr_reader :current_player, :board
 
-  def initialize(board, display)
+  def initialize(board)
     @board = Board.new(board)
     @player = Player.new
     @current_player = @player.player1
-    @display = display
+    @display = Display.new(self)
   end
 
   def play_game
-    @display.greet_players(self)
+    @display.greet_players
     while !is_over?
       show_board
       make_move(move)
@@ -22,6 +22,10 @@ class Game
     end
     show_end_of_game_message
   end
+
+  # def pass_current_player_to_display
+  #   @display.get_game(self)
+  # end
 
   def show_board
     puts @board.board
