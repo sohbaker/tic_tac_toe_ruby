@@ -61,8 +61,4 @@ RSpec.describe Board do
     board = Board.new(["x", "x", "o", "o", "x", "x", "x", "o", "o"])
     expect(board.is_full?).to eq(true)
   end
-
-  it "knows what moves on the board are available" do
-    board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-  end
 end
