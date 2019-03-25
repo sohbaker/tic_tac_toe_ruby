@@ -29,15 +29,15 @@ RSpec.describe Game do
     ["1", "4", "2", "5", "3"]
   end
 
-  it "creates a new board" do
-    game = brand_new_game
-    expect(game.show_board).to eq("" "
-    1 | 2 | 3
-    ---------
-    4 | 5 | 6
-    ---------
-    7 | 8 | 9" "")
-  end
+  # it "creates a new board" do
+  #   game = brand_new_game
+  #   expect(game.show_board).to eq("" "
+  #   1 | 2 | 3
+  #   ---------
+  #   4 | 5 | 6
+  #   ---------
+  #   7 | 8 | 9" "")
+  # end
 
   it "allows the player to make a move if the move is valid" do
     game = brand_new_game
@@ -65,10 +65,10 @@ RSpec.describe Game do
     expect(game.is_a_tie?).to eq(true)
   end
 
-  it "knows that the game can continue" do
-    game = game_in_progress
-    expect(game.is_over?).to eq(false)
-  end
+  # it "knows that the game can continue" do
+  #   game = game_in_progress
+  #   expect(game.is_over?).to eq(false)
+  # end
 
   it "returns 'it's a tie' when the game has ended and resulted in a tie" do
     display = DisplayDouble.new(tied_game_move_sequence)
