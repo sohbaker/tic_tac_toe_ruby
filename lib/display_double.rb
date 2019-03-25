@@ -3,15 +3,24 @@ class DisplayDouble
     @moves = moves
   end
 
-  def get_move
-    @moves.shift
+  def get_move(board)
+    move = @moves.shift
+    while !valid?(move, board)
+      puts "Invalid move"
+      move = @moves.shift
+    end
+    move
+  end
+
+  def valid?(move, board)
+    board.available_moves.include?(move)
   end
 
   def announce_tie
-    puts "It's a tie!"
+    "It's a tie!"
   end
 
   def announce_win
-    puts " wins!"
+    " wins!"
   end
 end

@@ -1,13 +1,22 @@
 class Display
-  def get_move
-    move = gets.chomp.to_i
+  def get_move(board)
+    input = gets.chomp
+    while !valid?(input, board)
+      puts "Invalid move"
+      input = gets.chomp
+    end
+    input
+  end
+
+  def valid?(input, board)
+    board.available_moves.include?(input)
   end
 
   def announce_tie
-    puts "It's a tie!"
+    "It's a tie!"
   end
 
   def announce_win
-    puts " wins!"
+    " wins!"
   end
 end
