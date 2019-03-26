@@ -23,10 +23,6 @@ class Game
     show_end_of_game_message
   end
 
-  # def pass_current_player_to_display
-  #   @display.get_game(self)
-  # end
-
   def show_board
     puts @board.board
   end

@@ -1,16 +1,16 @@
-require "game"
-require "display"
+require "game_double"
+require "display_double"
 require "board_conditions"
 
-RSpec.describe Display do
+RSpec.describe DisplayDouble do
   get_board = BoardConditions.new
   board = get_board.brand_new_game
 
   it "greets the players when the game starts" do
-    game = Game.new(board)
+    game = GameDouble.new(board)
     display = Display.new(game)
     allow(display).to receive(:greet_players)
-    # game.play_game
+    display.greet_players
 
     expect(display).to have_received(:greet_players)
   end
