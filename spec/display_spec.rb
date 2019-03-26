@@ -35,4 +35,15 @@ RSpec.describe DisplayDouble do
     display.announce_tie
     expect(game).to have_received(:show_end_of_game_message)
   end
+
+  it "returns ' wins!' when the game has ended because a player has won" do
+    board = get_board.player_x_has_won
+    game = GameDouble.new(board)
+    display = Display.new(game)
+    allow(game).to receive(:show_end_of_game_message)
+
+    game.play_game
+    display.announce_win
+    expect(game).to have_received(:show_end_of_game_message)
+  end
 end

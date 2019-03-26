@@ -11,8 +11,11 @@ class Game
     @display = Display.new(self)
   end
 
-  def play_game
+  def welcome_message
     @display.greet_players
+  end
+
+  def play_game
     while !is_over?
       show_board
       make_move(move)

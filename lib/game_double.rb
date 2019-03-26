@@ -4,7 +4,7 @@ require "board"
 require "player"
 
 class GameDouble
-  attr_reader :current_player
+  attr_reader :current_player, :board
 
   def initialize(board)
     @board = Board.new(board)
@@ -13,8 +13,11 @@ class GameDouble
     @display = Display.new(self)
   end
 
-  def play_game
+  def welcome_message
     @display.greet_players
+  end
+
+  def play_game
     while !is_over?
       show_board
       make_move(move)

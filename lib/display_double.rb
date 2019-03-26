@@ -1,5 +1,5 @@
 class DisplayDouble
-  attr_reader :game
+  attr_reader :game, :current_player
 
   def initialize(moves, game)
     @moves = moves
@@ -19,9 +19,11 @@ class DisplayDouble
   end
 
   def get_move(board)
+    prompt_player
     move = @moves.shift
     while !valid?(move, board)
       puts "Invalid move"
+      prompt_player
       move = @moves.shift
     end
     move
