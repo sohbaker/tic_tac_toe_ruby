@@ -1,6 +1,8 @@
-require "game"
-
 class Display
+  def initialize(game)
+    @game = game
+  end
+
   def greet_players
     puts "Welcome to Tic Tac Toe"
     puts "To make a move enter the number of the position you want to play"
@@ -9,7 +11,7 @@ class Display
   end
 
   def prompt_player
-    print "\nPlayer #{game.current_player}, make a move: "
+    print "\nPlayer #{@game.current_player}, make a move: "
   end
 
   def get_move(board)

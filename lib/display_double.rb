@@ -1,8 +1,9 @@
-require "game"
-
 class DisplayDouble
-  def initialize(moves)
+  attr_reader :game, :current_player
+
+  def initialize(moves, game)
     @moves = moves
+    @game = game
   end
 
   def greet_players
@@ -13,13 +14,15 @@ class DisplayDouble
   end
 
   def prompt_player
-    print "\nPlayer #{game.current_player}, make a move: "
+    print "\nPlayer #{@game.current_player}, make a move: "
   end
 
   def get_move(board)
+    prompt_player
     move = @moves.shift
     while !valid?(move, board)
       puts "Invalid move"
+      prompt_player
       move = @moves.shift
     end
     move

@@ -1,8 +1,8 @@
+require "display"
 require "board"
 require "player"
-require "display"
 
-class Game
+class GameDouble
   attr_reader :current_player, :board
 
   def initialize(board)
