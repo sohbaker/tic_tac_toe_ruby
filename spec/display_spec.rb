@@ -1,10 +1,13 @@
 require "game"
 require "display"
+require "display_double"
 require "board_conditions"
 require "pseudo_moves"
 
+get_board = BoardConditions.new
+moves = PseudoMoves.new
+
 RSpec.describe Display do
-  get_board = BoardConditions.new
   board = get_board.brand_new_game
 
   describe "#greet_players" do
@@ -14,7 +17,7 @@ RSpec.describe Display do
 
       expect do
         display.greet_players
-      end.to output("Welcome to Tic Tac Toe\nTo make a move enter the number of the position you want to play\nPlayer1's mark is 'X' and Player2's mark is 'O'\nThe game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n").to_stdout
+      end.to output("Welcome to Tic Tac Toe\n").to_stdout
     end
   end
 
@@ -28,26 +31,32 @@ RSpec.describe Display do
       end.to output("\nPlayer X, make a move: ").to_stdout
     end
   end
+end
 
-  # it "returns 'it's a tie' when the game has ended and resulted in a tie" do
-  #   board = get_board.game_is_tied
-  #   game = GameDouble.new(board)
-  #   display = Display.new(game)
-  #   allow(game).to receive(:show_end_of_game_message)
+RSpec.describe DisplayDouble do
+  describe "#announce_tie" do
+    it "returns 'it's a tie' when the game has ended and resulted in a tie" do
+      sequence = moves.tied_game_move_sequence
+      board = get_board.game_is_tied
+      game = Game.new(board)
+      display = DisplayDouble.new(sequence, game)
 
-  #   game.play_game
-  #   display.announce_tie
-  #   expect(game).to have_received(:show_end_of_game_message)
-  # end
+      expect do
+        game.show_end_of_game_message
+      end.to output("\nIt's a tie!\n").to_stdout
+    end
+  end
 
-  # it "returns ' wins!' when the game has ended because a player has won" do
-  #   board = get_board.player_x_has_won
-  #   game = GameDouble.new(board)
-  #   display = Display.new(game)
-  #   allow(game).to receive(:show_end_of_game_message)
+  describe "#announce_win" do
+    it "returns ' wins!' when the game has ended because a player has won" do
+      sequence = moves.player_x_wins_move_sequence
+      board = get_board.player_x_has_won
+      game = Game.new(board)
+      display = DisplayDouble.new(sequence, game)
 
-  #   game.play_game
-  #   display.announce_win
-  #   expect(game).to have_received(:show_end_of_game_message)
-  # end
+      expect do
+        game.show_end_of_game_message
+      end.to output("\nX wins!\n").to_stdout
+    end
+  end
 end
