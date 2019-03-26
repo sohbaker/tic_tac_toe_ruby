@@ -26,7 +26,6 @@ class Game
       end
     end
     show_board
-    # show_end_of_game_message
   end
 
   def show_board
