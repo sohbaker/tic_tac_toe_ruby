@@ -18,6 +18,8 @@ This application is written in Ruby.
 3. Make sure to check that .DS_Store is listed in your `.gitignore` file so that it doesn't get pushed to GitHub.  
 
 ## Testing
-Run all tests using the command `$ rspec`  
-Alternative you can use the command `$ rspec spec/file-name.rb` which will only run the tests in the specified file.
+You can manually run all tests using the command `$ rspec`  
+Alternatively you can use the command `$ bundle exec guard` to launch RSpec in [Guard](https://github.com/guard/guard). Guard will watch your files as you work and automatically run the test/s relating to your file as you make changes
+Further documentation [here](https://github.com/guard/guard-rspec) and installation guidance [here](https://collectiveidea.com/blog/archives/2017/02/09/guard-is-your-friend)
+
 Tests are run in [RSpec](http://rspec.info/documentation/) and are found in the `spec` folder.
