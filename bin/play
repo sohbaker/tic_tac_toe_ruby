@@ -10,5 +10,6 @@ require "display"
 
 board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 game = Game.new(board)
-game.welcome_message
+game.welcome_instructions
 game.play_game
+game.show_end_of_game_message

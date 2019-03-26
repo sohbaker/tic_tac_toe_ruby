@@ -5,6 +5,9 @@ class Display
 
   def greet_players
     puts "Welcome to Tic Tac Toe"
+  end
+
+  def show_rules
     puts "To make a move enter the number of the position you want to play"
     puts "Player1's mark is 'X' and Player2's mark is 'O'"
     puts "The game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
