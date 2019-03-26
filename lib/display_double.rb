@@ -7,7 +7,6 @@ class DisplayDouble
   end
 
   def greet_players
-    @game = game
     puts "Welcome to Tic Tac Toe"
     puts "To make a move enter the number of the position you want to play"
     puts "Player1's mark is 'X' and Player2's mark is 'O'"

@@ -1,5 +1,6 @@
 require "board"
 require "player"
+require "display"
 
 class Game
   attr_reader :current_player, :board

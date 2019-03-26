@@ -1,4 +1,3 @@
-# require "display_double"
 require "display"
 require "board"
 require "player"
