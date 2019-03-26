@@ -14,4 +14,13 @@ RSpec.describe DisplayDouble do
 
     expect(display).to have_received(:greet_players)
   end
+
+  it "prompts the player to make a move" do
+    game = GameDouble.new(board)
+    display = Display.new(game)
+    allow(display).to receive(:prompt_player)
+    display.prompt_player
+
+    expect(display).to have_received(:prompt_player)
+  end
 end
