@@ -11,9 +11,9 @@ RSpec.describe Display do
   board = get_board.brand_new_game
 
   describe "#greet_players" do
-    it "greets the players when the game starts" do
-      game = Game.new(board)
-      display = Display.new(game)
+  it "greets the players when the game starts" do
+    game = Game.new(board)
+    display = Display.new(game)
 
       expect do
         display.greet_players
@@ -31,7 +31,7 @@ RSpec.describe Display do
       end.to output("\nPlayer X, make a move: ").to_stdout
     end
   end
-end
+end 
 
 RSpec.describe DisplayDouble do
   describe "#announce_tie" do
@@ -40,7 +40,7 @@ RSpec.describe DisplayDouble do
       board = get_board.game_is_tied
       game = Game.new(board)
       display = DisplayDouble.new(sequence, game)
-
+      
       expect do
         game.show_end_of_game_message
       end.to output("\nIt's a tie!\n").to_stdout
