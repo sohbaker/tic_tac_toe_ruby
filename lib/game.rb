@@ -12,8 +12,9 @@ class Game
     @display = Display.new(self)
   end
 
-  def welcome_message
+  def welcome_instructions
     @display.greet_players
+    @display.show_rules
   end
 
   def play_game
@@ -24,7 +25,7 @@ class Game
         toggle_player
       end
     end
-    show_end_of_game_message
+    show_board
   end
 
   def show_board
@@ -60,11 +61,10 @@ class Game
   end
 
   def show_end_of_game_message
-    show_board
     if is_a_tie?
       puts "\n#{@display.announce_tie}"
     else
-      puts "\n#{@current_player} #{@display.announce_win}"
+      puts "\n#{@current_player}#{@display.announce_win}"
     end
   end
 end
