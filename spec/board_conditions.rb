@@ -1,4 +1,6 @@
 class BoardConditions
+  EMPTY_BOARD = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
   def brand_new_game
     ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end

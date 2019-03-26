@@ -4,7 +4,12 @@ require "board_conditions"
 require "pseudo_moves"
 
 RSpec.describe Game do
-  get_board = BoardConditions.new
+  # simplify your test setup
+  # I thought get_board was a method with 0 arguments, maybe ivar it?
+
+  # let(:get_board) { BoardConditions.new }
+
+  # let(:board) { Board.new }
 
   def instance_of_game(board)
     game = Game.new(board)
@@ -13,8 +18,10 @@ RSpec.describe Game do
   end
 
   it "allows the player to make a move" do
-    board = get_board.brand_new_game
+    # constants may be more readable and easier to use
+    board = BoardConditions::EMPTY_BOARD
     game = instance_of_game(board)
+    # avoid testing through the ui as much as possible
     expect(game.make_move(1)).to eq("" "
     X | 2 | 3
     ---------

@@ -17,6 +17,7 @@ class DisplayDouble
     print "\nPlayer #{@game.current_player}, make a move: "
   end
 
+  # need to consider whether display should do be doing this.
   def get_move(board)
     prompt_player
     move = @moves.shift

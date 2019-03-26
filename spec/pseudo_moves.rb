@@ -5,5 +5,5 @@ class PseudoMoves
 
   def player_x_wins_move_sequence
     ["1", "4", "2", "5", "3"]
-  end
+  end`
 end

@@ -8,7 +8,7 @@ class Game
   def initialize(board)
     @board = Board.new(board)
     @player = Player.new
-    @current_player = @player.player1
+    @current_player = @player.player1 #needed?
     @display = Display.new(self)
   end
 
@@ -18,7 +18,7 @@ class Game
   end
 
   def play_game
-    while !is_over?
+    until is_over? # check out `until`
       show_board
       make_move(move)
       if !has_player_won?(@current_player)
@@ -29,7 +29,7 @@ class Game
   end
 
   def show_board
-    puts @board.board
+    puts @board.board # reconsider not exposing the underlying data to the world
   end
 
   def move
@@ -61,6 +61,7 @@ class Game
   end
 
   def show_end_of_game_message
+    # should this class ever call puts? keeping all the IO in one class so if anything changes it only needs to change in one place
     if is_a_tie?
       puts "\n#{@display.announce_tie}"
     else

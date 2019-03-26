@@ -14,6 +14,7 @@ class Board
     @board = board
   end
 
+  # rename this? maybe display should print the board
   def board
     "" "
     #{@board[0]} | #{@board[1]} | #{@board[2]}
