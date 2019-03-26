@@ -18,14 +18,16 @@ RSpec.describe Display do
     end
   end
 
-  # it "prompts the player to make a move" do
-  #   game = GameDouble.new(board)
-  #   display = Display.new(game)
-  #   allow(display).to receive(:prompt_player)
-  #   display.prompt_player
+  describe "#prompt_player" do
+    it "prompts the player to make a move" do
+      game = Game.new(board)
+      display = Display.new(game)
 
-  #   expect(display).to have_received(:prompt_player)
-  # end
+      expect do
+        display.prompt_player
+      end.to output("\nPlayer X, make a move: ").to_stdout
+    end
+  end
 
   # it "returns 'it's a tie' when the game has ended and resulted in a tie" do
   #   board = get_board.game_is_tied
