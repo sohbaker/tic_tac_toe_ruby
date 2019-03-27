@@ -1,6 +1,16 @@
 class Display
   def initialize(game)
     @game = game
+    @board = game.board.board_array
+  end
+
+  def show_board
+    puts "" "
+    #{@board[0]} | #{@board[1]} | #{@board[2]}
+    ---------
+    #{@board[3]} | #{@board[4]} | #{@board[5]}
+    ---------
+    #{@board[6]} | #{@board[7]} | #{@board[8]}" ""
   end
 
   def greet_players
@@ -8,35 +18,29 @@ class Display
   end
 
   def show_rules
-    puts "To make a move enter the number of the position you want to play"
     puts "Player1's mark is 'X' and Player2's mark is 'O'"
     puts "The game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
   end
 
-  def prompt_player
-    print "\nPlayer #{@game.current_player}, make a move: "
+  def prompt_player(mark)
+    print "\nPlayer #{mark}, make a move: "
   end
 
-  def get_move(board)
-    prompt_player
+  def get_move(mark, board)
+    prompt_player(mark)
     input = gets.chomp
-    while !valid?(input, board)
-      puts "Invalid move"
-      prompt_player
-      input = gets.chomp
-    end
     input
   end
 
-  def valid?(input, board)
-    board.available_moves.include?(input)
+  def notify_invalid
+    puts "Invalid move"
   end
 
   def announce_tie
-    "It's a tie!"
+    puts "\nIt's a tie!"
   end
 
-  def announce_win
-    " wins!"
+  def announce_win(mark)
+    puts "\n#{mark} wins!"
   end
 end

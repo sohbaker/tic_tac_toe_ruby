@@ -9,7 +9,7 @@ class Game
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     @player = Player.new
     @current_player = @player.player1 #needed?
-    @display = Display.new(self, @board.board_array)
+    @display = Display.new(self)
   end
 
   def welcome_instructions
@@ -19,17 +19,30 @@ class Game
 
   def play_game
     until over?
-      @display.board
-      make_move(move)
-      if !has_player_won?(@current_player)
+      @display.show_board
+      take_turn(move)
+      if !player_wins?(@current_player)
         toggle_player
       end
     end
-    @display.board
+    @display.show_board
+  end
+
+  def take_turn(move)
+    if !valid?(move)
+      @display.notify_invalid
+      take_turn(move())
+    else
+      make_move(move)
+    end
   end
 
   def move
-    @display.get_move(@board)
+    @display.get_move(@current_player, @board)
+  end
+
+  def valid?(move)
+    @board.available_moves.include?(move)
   end
 
   def make_move(position)
@@ -60,7 +73,7 @@ class Game
     if is_a_tie?
       @display.announce_tie
     else
-      @display.announce_win
+      @display.announce_win(@current_player)
     end
   end
 end
