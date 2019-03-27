@@ -4,17 +4,9 @@
 # Allows you to require any file in lib
 $: << File.join(File.dirname(__FILE__), "..", "lib")
 
-# do you need all these requires?
-require "board"
 require "game"
-require "player"
-require "display"
 
-# why does the client of the board need to provide this information?
-# naked primitives here
-board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-game = Game.new(board)
-Board.new
+game = Game.new
 game.welcome_instructions
 game.play_game
 game.show_end_of_game_message

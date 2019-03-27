@@ -3,13 +3,13 @@ require "player"
 require "display"
 
 class Game
-  attr_reader :current_player, :board
+  attr_reader :current_player, :board, :display
 
-  def initialize(board)
-    @board = Board.new(board)
+  def initialize
+    @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     @player = Player.new
     @current_player = @player.player1 #needed?
-    @display = Display.new(self)
+    @display = Display.new(self, @board.board_array)
   end
 
   def welcome_instructions
@@ -18,18 +18,14 @@ class Game
   end
 
   def play_game
-    until is_over? # check out `until`
-      show_board
+    until over?
+      @display.board
       make_move(move)
       if !has_player_won?(@current_player)
         toggle_player
       end
     end
-    show_board
-  end
-
-  def show_board
-    puts @board.board # reconsider not exposing the underlying data to the world
+    @display.board
   end
 
   def move
@@ -40,7 +36,7 @@ class Game
     @board.mark_board(position, @current_player)
   end
 
-  def has_player_won?(mark)
+  def player_wins?(mark)
     @board.current_player_wins?(@current_player)
   end
 
@@ -52,20 +48,19 @@ class Game
     end
   end
 
-  def is_over?
-    is_a_tie? || has_player_won?(@current_player)
+  def over?
+    is_a_tie? || player_wins?(@current_player)
   end
 
   def is_a_tie?
-    @board.is_full? && !has_player_won?(@current_player)
+    @board.full? && !player_wins?(@current_player)
   end
 
   def show_end_of_game_message
-    # should this class ever call puts? keeping all the IO in one class so if anything changes it only needs to change in one place
     if is_a_tie?
-      puts "\n#{@display.announce_tie}"
+      @display.announce_tie
     else
-      puts "\n#{@current_player}#{@display.announce_win}"
+      @display.announce_win
     end
   end
 end

@@ -12,8 +12,8 @@ class Board
     [0, 4, 8],
   ]
 
-  def initialize
-    @board_array = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  def initialize(board)
+    @board_array = board
   end
 
   def mark_board(move, mark)
@@ -39,7 +39,6 @@ class Board
   end
 
   def full?
-    p @board_array
     available_moves.empty?
   end
 end
