@@ -1,4 +1,6 @@
 class Board
+  attr_reader :board_array
+
   WINNING_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,27 +13,18 @@ class Board
   ]
 
   def initialize(board)
-    @board = board
-  end
-
-  def board
-    "" "
-    #{@board[0]} | #{@board[1]} | #{@board[2]}
-    ---------
-    #{@board[3]} | #{@board[4]} | #{@board[5]}
-    ---------
-    #{@board[6]} | #{@board[7]} | #{@board[8]}" ""
+    @board_array = board
   end
 
   def mark_board(move, mark)
     position = move.to_i - 1
-    @board[position] = mark
-    board
+    @board_array[position] = mark.upcase
+    @board_array
   end
 
   def available_moves
     available_moves = []
-    @board.each do |spot|
+    @board_array.each do |spot|
       if spot.upcase != "X" && spot.upcase != "O"
         available_moves.push(spot)
       end
@@ -41,11 +34,11 @@ class Board
 
   def current_player_wins?(mark)
     WINNING_COMBINATIONS.any? do |combination|
-      combination.all? { |position| @board[position] == mark }
+      combination.all? { |position| @board_array[position] == mark.upcase }
     end
   end
 
-  def is_full?
+  def full?
     available_moves.empty?
   end
 end

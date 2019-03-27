@@ -5,4 +5,5 @@ group :development, :test do
   gem 'rufo'
   gem "guard-rspec"
   gem "guard"
+  gem "simplecov", require: false
 end

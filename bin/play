@@ -1,15 +1,12 @@
 #!/usr/bin/env ruby
+# /env uses rvm to find the version of ruby you have, rather than using the system one
 
 # Allows you to require any file in lib
 $: << File.join(File.dirname(__FILE__), "..", "lib")
 
-require "board"
 require "game"
-require "player"
-require "display"
 
-board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-game = Game.new(board)
+game = Game.new
 game.welcome_instructions
 game.play_game
 game.show_end_of_game_message

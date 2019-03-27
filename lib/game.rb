@@ -3,12 +3,12 @@ require "player"
 require "display"
 
 class Game
-  attr_reader :current_player, :board
+  attr_reader :current_player, :board, :display
 
-  def initialize(board)
-    @board = Board.new(board)
+  def initialize
+    @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     @player = Player.new
-    @current_player = @player.player1
+    @current_player = @player.player1 #needed?
     @display = Display.new(self)
   end
 
@@ -18,29 +18,38 @@ class Game
   end
 
   def play_game
-    while !is_over?
-      show_board
-      make_move(move)
-      if !has_player_won?(@current_player)
+    until over?
+      @display.show_board
+      take_turn(move)
+      if !player_wins?(@current_player)
         toggle_player
       end
     end
-    show_board
+    @display.show_board
   end
 
-  def show_board
-    puts @board.board
+  def take_turn(move)
+    if !valid?(move)
+      @display.notify_invalid
+      take_turn(move())
+    else
+      make_move(move)
+    end
   end
 
   def move
-    @display.get_move(@board)
+    @display.get_move(@current_player, @board)
+  end
+
+  def valid?(move)
+    @board.available_moves.include?(move)
   end
 
   def make_move(position)
     @board.mark_board(position, @current_player)
   end
 
-  def has_player_won?(mark)
+  def player_wins?(mark)
     @board.current_player_wins?(@current_player)
   end
 
@@ -52,19 +61,19 @@ class Game
     end
   end
 
-  def is_over?
-    is_a_tie? || has_player_won?(@current_player)
+  def over?
+    is_a_tie? || player_wins?(@current_player)
   end
 
   def is_a_tie?
-    @board.is_full? && !has_player_won?(@current_player)
+    @board.full? && !player_wins?(@current_player)
   end
 
   def show_end_of_game_message
     if is_a_tie?
-      puts "\n#{@display.announce_tie}"
+      @display.announce_tie
     else
-      puts "\n#{@current_player}#{@display.announce_win}"
+      @display.announce_win(@current_player)
     end
   end
 end
