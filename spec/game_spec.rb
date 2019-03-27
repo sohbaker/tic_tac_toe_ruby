@@ -2,15 +2,10 @@ require "game"
 require "pseudo_moves"
 
 RSpec.describe Game do
-  # game should switch the players, halt an invalid move, end the game, or let the game continue
-
   it "switches the player" do
     game = Game.new
     game.make_move(1)
     expect(game.toggle_player).to eq("O")
-  end
-
-  it "halts an invalid move" do
   end
 
   it "knows that the game can continue" do

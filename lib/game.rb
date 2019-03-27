@@ -20,7 +20,7 @@ class Game
   def play_game
     until over?
       @display.show_board
-      take_turn(move)
+      take_turn(ask_for_move)
       if !player_wins?(@current_player)
         toggle_player
       end
@@ -37,8 +37,14 @@ class Game
     end
   end
 
-  def move
-    @display.get_move(@current_player, @board)
+  def ask_for_move(type_of_player)
+    # where does it get the type of player from ??
+    if type_of_player == human
+      chosen_move = @display.get_move(@current_player, @board)
+    elsif type_of_player == computer
+      chosen_move = do something else 
+    end
+    chosen_move 
   end
 
   def valid?(move)
