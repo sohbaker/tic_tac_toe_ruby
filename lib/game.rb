@@ -41,7 +41,7 @@ class Game
     if type_of_player == "human"
       chosen_move = @display.get_move(@current_player)
     elsif type_of_player == "computer"
-      chosen_move == "hi"
+      chosen_move = "hi"
     end
     chosen_move
   end
