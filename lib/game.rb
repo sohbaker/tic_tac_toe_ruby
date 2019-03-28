@@ -1,6 +1,7 @@
 require "board"
 require "player"
 require "display"
+require "computer_player"
 
 class Game
   attr_reader :current_player, :board, :display
@@ -10,6 +11,7 @@ class Game
     @player = Player.new
     @current_player = @player.player1
     @display = Display.new(self)
+    @computer = ComputerPlayer.new
   end
 
   def welcome_instructions
@@ -31,7 +33,7 @@ class Game
   def take_turn(move)
     if !valid?(move)
       @display.notify_invalid
-      take_turn(move())
+      take_turn(ask_for_move())
     else
       make_move(move)
     end
@@ -41,7 +43,7 @@ class Game
     if type_of_player == "human"
       chosen_move = @display.get_move(@current_player)
     elsif type_of_player == "computer"
-      chosen_move = "hi"
+      chosen_move = @computer.get_move
     end
     chosen_move
   end

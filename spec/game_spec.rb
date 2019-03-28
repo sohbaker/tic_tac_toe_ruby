@@ -48,6 +48,6 @@ RSpec.describe Game do
   it "can get a move from a computer player" do
     game = Game.new
 
-    expect(game.ask_for_move("computer")).to eq("hi")
+    expect(game.ask_for_move("computer")).to eq("1")
   end
 end
