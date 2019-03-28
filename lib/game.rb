@@ -8,7 +8,7 @@ class Game
   def initialize
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     @player = Player.new
-    @current_player = @player.player1 #needed?
+    @current_player = @player.player1
     @display = Display.new(self)
   end
 
@@ -38,13 +38,12 @@ class Game
   end
 
   def ask_for_move(type_of_player)
-    # where does it get the type of player from ??
-    if type_of_player == human
-      chosen_move = @display.get_move(@current_player, @board)
-    elsif type_of_player == computer
-      chosen_move = do something else 
+    if type_of_player == "human"
+      chosen_move = @display.get_move(@current_player)
+    elsif type_of_player == "computer"
+      chosen_move == "hi"
     end
-    chosen_move 
+    chosen_move
   end
 
   def valid?(move)

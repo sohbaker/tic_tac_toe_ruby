@@ -1,5 +1,6 @@
 require "game"
 require "pseudo_moves"
+require "display_double"
 
 RSpec.describe Game do
   it "switches the player" do
@@ -35,5 +36,12 @@ RSpec.describe Game do
       end
     end
     expect(game.player_wins?(game.current_player)).to be(true)
+  end
+
+  it "can get a move from a human player" do
+    game = Game.new
+    game.instance_variable_set(:@display, DisplayDouble.new(["1"]))
+
+    expect(game.ask_for_move("human")).to eq("1")
   end
 end

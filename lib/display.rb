@@ -26,7 +26,7 @@ class Display
     print "\nPlayer #{mark}, make a move: "
   end
 
-  def get_move(mark, board)
+  def get_move(mark)
     prompt_player(mark)
     input = gets.chomp
     input

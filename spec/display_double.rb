@@ -7,8 +7,8 @@ class DisplayDouble
     print "\nPlayer #{mark}, make a move: "
   end
 
-  def get_move(board)
-    prompt_player
+  def get_move(player_mark)
+    prompt_player(player_mark)
     move = @moves.shift
     move
   end
