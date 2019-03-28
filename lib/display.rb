@@ -17,6 +17,10 @@ class Display
     puts "Welcome to Tic Tac Toe"
   end
 
+  def show(computers_move)
+    puts computers_move
+  end
+
   def show_rules
     puts "Player1's mark is 'X' and Player2's mark is 'O'"
     puts "The game will end either when a player wins by placing their mark across a row, column or diagonally, or all the positions are taken\n"
@@ -26,7 +30,7 @@ class Display
     print "\nPlayer #{mark}, make a move: "
   end
 
-  def get_move(mark, board)
+  def get_move(mark)
     prompt_player(mark)
     input = gets.chomp
     input

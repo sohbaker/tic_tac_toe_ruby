@@ -1,4 +1,3 @@
-require "spec_helper"
 require "game"
 require "display"
 require "board_condition"
@@ -37,7 +36,7 @@ RSpec.describe Display do
       display = Display.new(game)
 
       expect do
-        display.prompt_player(game.current_player)
+        display.prompt_player(game.mark)
       end.to output("\nPlayer X, make a move: ").to_stdout
     end
   end
@@ -72,7 +71,7 @@ RSpec.describe Display do
       display = Display.new(game)
 
       expect do
-        display.announce_win(game.current_player)
+        display.announce_win(game.mark)
       end.to output("\nX wins!\n").to_stdout
     end
   end

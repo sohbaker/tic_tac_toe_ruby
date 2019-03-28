@@ -7,5 +7,5 @@ SimpleCov.start
 
 require "board"
 require "game"
-require "player"
 require "display"
+require "computer"
