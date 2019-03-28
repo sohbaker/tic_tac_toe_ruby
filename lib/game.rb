@@ -10,7 +10,7 @@ class Game
     @current_player = "human"
     @mark = "X"
     @display = Display.new(self)
-    @computer = Computer.new("x")
+    @computer = Computer.new("o")
   end
 
   def welcome_instructions
