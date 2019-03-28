@@ -6,7 +6,8 @@ RSpec.describe Game do
   it "switches the player" do
     game = Game.new
     game.make_move(1)
-    expect(game.toggle_player).to eq("O")
+    game.toggle_player
+    expect(game.assign_mark).to eq("O")
   end
 
   it "knows that the game can continue" do
@@ -22,6 +23,7 @@ RSpec.describe Game do
     until moves.empty?
       game.make_move(moves.shift)
       game.toggle_player
+      game.assign_mark
     end
     expect(game.is_a_tie?).to eq(true)
   end
@@ -49,5 +51,12 @@ RSpec.describe Game do
     game = Game.new
 
     expect(game.ask_for_move("computer")).to eq("1")
+  end
+
+  it "assigns the human player the mark 'X'" do
+    game = Game.new
+    game.instance_variable_set(:@current_player, "human")
+
+    expect(game.assign_mark).to eq("X")
   end
 end

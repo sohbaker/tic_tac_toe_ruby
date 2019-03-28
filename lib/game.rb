@@ -4,12 +4,13 @@ require "display"
 require "computer_player"
 
 class Game
-  attr_reader :current_player, :board, :display
+  attr_reader :current_player, :board, :display, :mark
 
   def initialize
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     @player = Player.new
-    @current_player = @player.player1
+    @current_player = "human"
+    @mark = "X"
     @display = Display.new(self)
     @computer = ComputerPlayer.new
   end
@@ -22,9 +23,10 @@ class Game
   def play_game
     until over?
       @display.show_board
-      take_turn(ask_for_move)
-      if !player_wins?(@current_player)
+      take_turn(ask_for_move("human"))
+      if !player_wins?(@mark)
         toggle_player
+        assign_mark
       end
     end
     @display.show_board
@@ -33,7 +35,7 @@ class Game
   def take_turn(move)
     if !valid?(move)
       @display.notify_invalid
-      take_turn(ask_for_move())
+      take_turn(ask_for_move(@current_player))
     else
       make_move(move)
     end
@@ -41,7 +43,7 @@ class Game
 
   def ask_for_move(type_of_player)
     if type_of_player == "human"
-      chosen_move = @display.get_move(@current_player)
+      chosen_move = @display.get_move(@mark)
     elsif type_of_player == "computer"
       chosen_move = @computer.get_move
     end
@@ -53,18 +55,26 @@ class Game
   end
 
   def make_move(position)
-    @board.mark_board(position, @current_player)
+    @board.mark_board(position, @mark)
   end
 
   def player_wins?(mark)
-    @board.current_player_wins?(@current_player)
+    @board.current_player_wins?(@mark)
   end
 
   def toggle_player
-    if @current_player == @player.player1
-      @current_player = @player.player2
+    if @current_player == "human"
+      @current_player = "computer"
     else
-      @current_player = @player.player1
+      @current_player = "human"
+    end
+  end
+
+  def assign_mark
+    if @current_player == "human"
+      @mark = "X"
+    else
+      @mark = "O"
     end
   end
 
