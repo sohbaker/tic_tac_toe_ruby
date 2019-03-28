@@ -1,18 +1,16 @@
 require "board"
-require "player"
 require "display"
-require "computer_player"
+require "computer"
 
 class Game
   attr_reader :current_player, :board, :display, :mark
 
   def initialize
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-    @player = Player.new
     @current_player = "human"
     @mark = "X"
     @display = Display.new(self)
-    @computer = ComputerPlayer.new
+    @computer = Computer.new
   end
 
   def welcome_instructions
