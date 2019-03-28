@@ -1,4 +1,4 @@
-require "pseudo_moves"
+require "./spec/pseudo_moves"
 require "board"
 
 class Computer
