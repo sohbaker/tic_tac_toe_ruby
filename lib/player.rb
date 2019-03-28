@@ -5,16 +5,9 @@
 # display - asks player for their mark
 
 class Player
-  def initialize
-    @player1 = "X"
-    @player2 = "O"
-  end
+  attr_reader :mark
 
-  def player1
-    @player1
-  end
-
-  def player2
-    @player2
+  def initialize(mark)
+    @mark = mark.upcase
   end
 end
