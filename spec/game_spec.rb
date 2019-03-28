@@ -1,3 +1,4 @@
+require "spec_helper"
 require "game"
 require "pseudo_moves"
 require "display_double"

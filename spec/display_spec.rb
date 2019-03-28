@@ -1,4 +1,3 @@
-require "spec_helper"
 require "game"
 require "display"
 require "board_condition"
