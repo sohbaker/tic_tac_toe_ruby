@@ -8,5 +8,6 @@ require "game"
 
 game = Game.new
 game.welcome_instructions
+game.get_game_type
 game.play_game
 game.show_end_of_game_message
