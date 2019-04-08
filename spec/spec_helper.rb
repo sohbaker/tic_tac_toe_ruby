@@ -9,3 +9,31 @@ require "board"
 require "game"
 require "display"
 require "computer"
+
+def x_wins_sequence
+  ["1", "4", "2", "5", "3"]
+end
+
+def tied_game_sequence
+  ["9", "5", "1", "6", "4", "7", "3", "2", "8"]
+end
+
+def computer_player
+  ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+end
+
+def empty_board
+  ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+end
+
+def in_progress
+  ["O", "X", "3", "O", "5", "6", "7", "X", "9"]
+end
+
+def tied_game
+  ["X", "X", "O", "O", "X", "X", "X", "O", "O"]
+end
+
+def player_has_won
+  ["X", "O", "O", "X", "5", "6", "X", "8", "9"]
+end

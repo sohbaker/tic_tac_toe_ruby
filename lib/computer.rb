@@ -1,15 +1,15 @@
-require "./spec/pseudo_moves"
+require "./spec/spec_helper"
 
 class Computer
   attr_reader :mark
 
   def initialize(mark)
-    @moves = PseudoMoves::COMPUTER_PLAYER
+    @moves = computer_player
     @mark = mark
   end
 
   def get_move
-    move = @moves.shift
-    move
+    @moves.shift
+    # return a random available move
   end
 end

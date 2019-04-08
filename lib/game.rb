@@ -4,7 +4,7 @@ require "computer"
 require "human"
 
 class Game
-  attr_reader :current_player, :board, :display, :player1, :player2
+  attr_reader :current_player, :board, :display, :player1, :player2, :mark
 
   def initialize
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
@@ -39,6 +39,7 @@ class Game
 
   def play_game
     until over?
+     system('clear') 
       @display.show_board(@board.board_array)
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
@@ -91,7 +92,8 @@ class Game
     @board.full? && !player_wins?(@current_player.mark)
   end
 
-  def show_end_of_game_message
+  def outcome
+    system('clear')
     @display.show_board(@board.board_array)
     if is_a_tie?
       @display.announce_tie
