@@ -10,7 +10,8 @@ Create a Human vs Human Tic Tac Toe game which can be played from the Command Li
 - [x] End of game message (knows who won or whether there was a tie)
 
 ### Task 2 
-  -[] Refactor Human vs Human Tic Tac Toe to allow a Human vs Computer option
+ - [x] Refactor Human vs Human Tic Tac Toe to allow a Human vs Computer option
+ - [] Make the Computer player unbeatable
 
 ## Language
 This application is written in [Ruby](https://ruby-doc.org/). 
