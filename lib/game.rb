@@ -1,16 +1,14 @@
 require "board"
 require "display"
 require "computer"
+require "human"
 
 class Game
-  attr_reader :current_player, :board, :display, :mark
+  attr_reader :current_player, :board, :display, :player1, :player2, :mark
 
   def initialize
     @board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-    @current_player = "human"
-    @mark = "X"
-    @display = Display.new(self)
-    @computer = Computer.new("o")
+    @display = Display.new
   end
 
   def welcome_instructions
@@ -18,40 +16,43 @@ class Game
     @display.show_rules
   end
 
-  def assign_mark
-    if @current_player == "human"
-      @mark = "X"
+  def get_game_type
+    @display.choose_game_type
+    type = @display.take_input
+    create_players(type)
+  end
+
+  def create_players(game_type)
+    if game_type == "hh"
+      @player1 = Human.new("X")
+      @player2 = Human.new("O")
+      @current_player = @player1
+    elsif game_type == "hc"
+      @player1 = Human.new("X")
+      @player2 = Computer.new("O")
+      @current_player = @player1
     else
-      @mark = "O"
+      @display.notify_invalid("choice")
+      get_game_type()
     end
   end
 
   def play_game
     until over?
-      @display.show_board
-      move = ask_for_move(@current_player)
+     system('clear') 
+      @display.show_board(@board.board_array)
+      @display.prompt_player(@current_player.mark)
+      move = @current_player.get_move
       check_move(move)
-      if !player_wins?(@mark)
+      if !player_wins?(@current_player.mark)
         toggle_player
-        assign_mark
       end
     end
   end
 
-  def ask_for_move(type_of_player)
-    if type_of_player == "human"
-      chosen_move = @display.get_move(@mark)
-    elsif type_of_player == "computer"
-      @display.prompt_player(@mark)
-      chosen_move = @computer.get_move
-      @display.show(chosen_move)
-    end
-    chosen_move
-  end
-
   def check_move(move)
     if valid?(move)
-      complete_move(move)
+      complete_move(move, @current_player.mark)
     else
       get_new_move
     end
@@ -62,13 +63,13 @@ class Game
   end
 
   def get_new_move
-    @display.notify_invalid
-    new_move = ask_for_move(@current_player)
+    @display.notify_invalid("move")
+    new_move = @current_player.get_move
     check_move(new_move)
   end
 
-  def complete_move(position)
-    @board.mark_board(position, @mark)
+  def complete_move(position, mark)
+    @board.mark_board(position, mark)
   end
 
   def player_wins?(mark)
@@ -76,27 +77,28 @@ class Game
   end
 
   def toggle_player
-    if @current_player == "human"
-      @current_player = "computer"
+    if @current_player == @player1
+      @current_player = @player2
     else
-      @current_player = "human"
+      @current_player = @player1
     end
   end
 
   def over?
-    is_a_tie? || player_wins?(@current_player)
+    is_a_tie? || player_wins?(@current_player.mark)
   end
 
   def is_a_tie?
-    @board.full? && !player_wins?(@current_player)
+    @board.full? && !player_wins?(@current_player.mark)
   end
 
-  def show_end_of_game_message
-    @display.show_board
+  def outcome
+    system('clear')
+    @display.show_board(@board.board_array)
     if is_a_tie?
       @display.announce_tie
     else
-      @display.announce_win(@mark)
+      @display.announce_win(@current_player.mark)
     end
   end
 end
