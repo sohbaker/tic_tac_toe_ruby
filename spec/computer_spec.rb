@@ -1,14 +1,16 @@
 require "computer"
+require "spec_helper"
+require "board"
 
 RSpec.describe Computer do
-  it "creates a new computer with a mark" do
-    computer = Computer.new("O")
+  board = Board.new(empty_board)
+  computer = Computer.new("O", board)
+
+  it "creates a new computer player with a mark" do
     expect(computer.mark).to eq("O")
   end
   
-  it "returns a random move" do 
-    computer = Computer.new("O")
-    expect(computer.get_move.empty?).to eq(false)
+  it "selects an available move from the board" do
+    expect(computer.get_move.nil?).to eq(false)
   end
-
 end
