@@ -5,4 +5,10 @@ RSpec.describe Computer do
     computer = Computer.new("O")
     expect(computer.mark).to eq("O")
   end
+  
+  it "returns a random move" do 
+    computer = Computer.new("O")
+    expect(computer.get_move.empty?).to eq(false)
+  end
+
 end

@@ -9,7 +9,6 @@ class Computer
   end
 
   def get_move
-    @moves.shift
-    # return a random available move
+    @moves.sample
   end
 end
