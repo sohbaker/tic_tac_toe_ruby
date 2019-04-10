@@ -29,7 +29,7 @@ class Game
       @current_player = @player1
     elsif game_type == "hc"
       @player1 = Human.new("X")
-      @player2 = Computer.new("O")
+      @player2 = Computer.new("O", @board)
       @current_player = @player1
     else
       @display.notify_invalid("choice")
