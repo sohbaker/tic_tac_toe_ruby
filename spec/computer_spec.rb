@@ -15,8 +15,14 @@ RSpec.describe Computer do
   end
 
   it "blocks it's opponent from winning the game" do 
-    board = Board.new(in_progress)
+    board = Board.new(x_wins_on_next_move)
     computer = Computer.new("O", board)
     expect(computer.get_move).to eq("5")
+  end
+  
+  it "plays a move to win the game when possible" do 
+    board = Board.new(o_wins_on_next_move)
+    computer = Computer.new("O", board)
+    expect(computer.get_move).to eq("7")
   end
 end

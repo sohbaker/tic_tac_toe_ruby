@@ -22,21 +22,25 @@ class Computer
   def analyse_board
     spaces = @board.available_moves
     current_board = @board.board_array
-    best_play = "" 
+    best_play = nil 
 
     spaces.each do |space|
-       @board.mark_board(space, opponent_mark)
-       if @board.current_player_wins?(opponent_mark)
-         best_play = space
-         @board.board_array[space.to_i - 1] = space
-       else
-         @board.board_array[space.to_i - 1] = space
-       end 
+      @board.mark_board(space, @mark)
+      if @board.current_player_wins?(@mark)
+        best_play = space
+        @board.board_array[space.to_i - 1] = space
+      else
+        @board.board_array[space.to_i - 1] = space
+      end
+      @board.mark_board(space, opponent_mark)
+      if @board.current_player_wins?(opponent_mark)
+        best_play = space
+        @board.board_array[space.to_i - 1] = space
+      else
+        @board.board_array[space.to_i - 1] = space
+      end 
      end
    
-  #  if move will mean computer wins, make move 
-  #  elsif move will stop opponent from winning, make move
-  #  else sample from available moves 
     if best_play 
       return best_play
     else
