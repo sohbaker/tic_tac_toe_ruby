@@ -13,4 +13,10 @@ RSpec.describe Computer do
   it "selects an available move from the board" do
     expect(computer.get_move.nil?).to eq(false)
   end
+
+  it "blocks it's opponent from winning the game" do 
+    board = Board.new(in_progress)
+    computer = Computer.new("O", board)
+    expect(computer.get_move).to eq("5")
+  end
 end

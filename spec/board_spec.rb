@@ -1,6 +1,5 @@
 require "spec_helper"
 require "board"
-require "board_condition"
 
 RSpec.describe Board do
   it "adds a mark to a board" do
