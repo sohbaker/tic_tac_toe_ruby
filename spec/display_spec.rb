@@ -1,6 +1,6 @@
+require "spec_helper"
 require "game"
 require "display"
-require "board_condition"
 
 RSpec.describe Display do
   describe "#greet_players" do
@@ -56,7 +56,7 @@ RSpec.describe Display do
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
       game = Game.new
-      game.instance_variable_set(:@board, Board.new(BoardCondition::TIED_GAME))
+      game.instance_variable_set(:@board, Board.new(tied_game))
       display = Display.new
 
       expect do
@@ -69,7 +69,7 @@ RSpec.describe Display do
     it "returns 'X wins!' when the game has ended because a player has won" do
       game = Game.new
       game.create_players("hh")
-      game.instance_variable_set(:@board, Board.new(BoardCondition::PLAYER_X_HAS_WON))
+      game.instance_variable_set(:@board, Board.new(player_has_won))
       display = Display.new
 
       expect do
