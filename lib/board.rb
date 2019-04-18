@@ -21,6 +21,11 @@ class Board
     @board_array[position] = mark.upcase
     @board_array
   end
+ 
+  def clear_mark(move)
+    position = move.to_i - 1
+    @board_array[position] = move
+  end
 
   def available_moves
     available_moves = []
