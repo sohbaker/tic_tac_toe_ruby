@@ -1,5 +1,5 @@
-require "computer"
 require "spec_helper"
+require "computer"
 require "board"
 
 RSpec.describe Computer do
