@@ -3,8 +3,8 @@ require "computer"
 require "board"
 
 RSpec.describe Computer do
-  board = Board.new(empty_board)
-  computer = Computer.new("O", board)
+  let(:board) {Board.new(empty_board)}
+  let(:computer) {Computer.new("O", board)}
 
   it "creates a new computer player with a mark" do
     expect(computer.mark).to eq("O")
