@@ -19,33 +19,34 @@ class Computer
     opponent
   end
 
-  def analyse_board
+  def analyse_board 
     current_board = @board.board_array
     best_play = nil 
 
     @board.available_moves.each do |space|
       @board.mark_board(space, @mark)
-      unless @board.current_player_wins?(@mark) || @board.current_player_wins?(opponent_mark)
+      unless @board.current_player_wins?(@mark) 
         @board.clear_mark(space)
       else
         best_play = space
-        p "player wins or opponent wins - #{best_play}"
+        # p "player win- #{best_play}"
         @board.clear_mark(space)
       end
-#      unless @board.current_player_wins?(opponent_mark)
-#        @board.clear_mark(space)
-#      else
-#        best_play = space
-#        p "opponent wins - #{best_play}"
-#        @board.clear_mark(space)
-#      end
+      @board.mark_board(space, opponent_mark)
+      unless @board.current_player_wins?(opponent_mark)
+        @board.clear_mark(space)
+      else
+        best_play = space
+        # p "opponent wins - #{best_play}"
+        @board.clear_mark(space)
+      end
    end
-   
-    p "this is best - #{best_play}"
-    if best_play 
+ 
+     # p "this is best - #{best_play}"
+    if best_play
       return best_play
-    else
+    else 
       @board.available_moves.sample
-    end  
+    end
   end
 end
