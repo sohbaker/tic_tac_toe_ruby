@@ -25,21 +25,15 @@ class Computer
 
     @board.available_moves.each do |space|
       @board.mark_board(space, @mark)
-      unless @board.current_player_wins?(@mark) 
-        @board.clear_mark(space)
-      else
+      if @board.current_player_wins?(@mark) 
         best_play = space
-        # p "player win- #{best_play}"
-        @board.clear_mark(space)
       end
+        @board.clear_mark(space)
       @board.mark_board(space, opponent_mark)
-      unless @board.current_player_wins?(opponent_mark)
-        @board.clear_mark(space)
-      else
+      if @board.current_player_wins?(opponent_mark)
         best_play = space
-        # p "opponent wins - #{best_play}"
-        @board.clear_mark(space)
       end
+        @board.clear_mark(space)
    end
  
      # p "this is best - #{best_play}"
