@@ -11,7 +11,7 @@ class Board
     [2, 4, 6],
     [0, 4, 8],
   ]
-
+ 
   def initialize(board)
     @board_array = board
   end
@@ -37,7 +37,7 @@ class Board
     available_moves
   end
 
-  def current_player_wins?(mark)
+  def player_wins?(mark)
     WINNING_COMBINATIONS.any? do |combination|
       combination.all? { |position| @board_array[position] == mark.upcase }
     end
