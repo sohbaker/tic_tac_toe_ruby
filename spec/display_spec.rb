@@ -20,7 +20,7 @@ RSpec.describe Display do
       display = Display.new
 
       expect do
-        display.show_board(game.board.board_array)
+        display.show_board(game.board.current_board)
       end.to output("" "
     1 | 2 | 3
     ---------
