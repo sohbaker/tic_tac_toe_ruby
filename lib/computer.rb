@@ -9,34 +9,33 @@ class Computer
   def get_move
     analyse_board
   end
-
+ 
   def opponent_mark
-    if @mark == "O"
-      opponent = "X"
+    if @mark == "X"
+      "O"
     else 
-      opponent = "O"
+      "X"
     end
-    opponent
   end
 
   def analyse_board 
-    current_board = @board.board_array
-    best_play = nil 
+  current_board = @board.board_array
+  best_play = nil 
 
-    @board.available_moves.each do |space|
-      @board.mark_board(space, @mark)
-      if @board.current_player_wins?(@mark) 
-        best_play = space
-      end
-        @board.clear_mark(space)
-      @board.mark_board(space, opponent_mark)
-      if @board.current_player_wins?(opponent_mark)
-        best_play = space
-      end
-        @board.clear_mark(space)
-   end
+   @board.available_moves.each do |space|
+    @board.mark_board(space, @mark)
+    if @board.current_player_wins?(@mark) 
+      best_play = space
+    end
+    @board.clear_mark(space)
+    
+    @board.mark_board(space, opponent_mark)
+    if @board.current_player_wins?(opponent_mark)
+      best_play = space
+     end
+     @board.clear_mark(space)
+    end
  
-     # p "this is best - #{best_play}"
     if best_play
       return best_play
     else 
