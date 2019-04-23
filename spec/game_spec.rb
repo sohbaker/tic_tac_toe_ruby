@@ -4,7 +4,7 @@ require "human"
 
 RSpec.describe Game do
  it "knows that the game can continue" do
-    game = Game.new
+    game = Game.new(Board.new(empty_board))
     game.instance_variable_set(:@current_player, Human.new("X"))
     game.complete_move(1, "X")
     game.complete_move(2, "O")
@@ -13,7 +13,7 @@ RSpec.describe Game do
 
   it "knows the game has ended with a tie" do
     moves = tied_game_sequence
-    game = Game.new 
+    game = Game.new(Board.new(empty_board))
     game.create_players("hh")
     mark = game.current_player.mark
     until moves.empty?
@@ -26,7 +26,7 @@ RSpec.describe Game do
 
   it "knows when a player has won the game" do
     moves = x_wins_sequence
-    game = Game.new
+    game = Game.new(Board.new(empty_board))
     game.create_players("hh")
     mark = game.current_player.mark
     until moves.empty?
