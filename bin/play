@@ -6,7 +6,8 @@ $: << File.join(File.dirname(__FILE__), "..", "lib")
 
 require "game"
 
-game = Game.new
+board = Board.new(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+game = Game.new(board)
 game.welcome_instructions
 game.get_game_type
 game.play_game

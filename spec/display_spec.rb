@@ -5,7 +5,7 @@ require "display"
 RSpec.describe Display do
   describe "#greet_players" do
     it "greets the players when the game starts" do
-      game = Game.new
+      game = Game.new(Board.new(empty_board))
       display = Display.new
 
       expect do
@@ -16,7 +16,7 @@ RSpec.describe Display do
 
   describe "#show_board" do
     it "shows a board" do
-      game = Game.new
+      game = Game.new(Board.new(empty_board))
       display = Display.new
 
       expect do
@@ -32,7 +32,7 @@ RSpec.describe Display do
 
   describe "#prompt_player" do
     it "prompts the player to make a move" do
-      game = Game.new
+      game = Game.new(Board.new(empty_board))
       game.create_players("hh")
       display = Display.new
 
@@ -44,7 +44,7 @@ RSpec.describe Display do
 
   describe "#notify_invalid" do
     it "tell the player they have attempted an invalid move" do
-      game = Game.new
+      game = Game.new(Board.new(empty_board))
       display = Display.new
 
       expect do
@@ -55,8 +55,8 @@ RSpec.describe Display do
 
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
-      game = Game.new
-      game.instance_variable_set(:@board, Board.new(tied_game))
+      game = Game.new(Board.new(tied_game))
+#      game.instance_variable_set(:@board, Board.new(tied_game))
       display = Display.new
 
       expect do
@@ -67,9 +67,9 @@ RSpec.describe Display do
 
   describe "#announce_win" do
     it "returns 'X wins!' when the game has ended because a player has won" do
-      game = Game.new
+      game = Game.new(Board.new(player_has_won))
       game.create_players("hh")
-      game.instance_variable_set(:@board, Board.new(player_has_won))
+#      game.instance_variable_set(:@board, Board.new(player_has_won))
       display = Display.new
 
       expect do
