@@ -1,5 +1,5 @@
 class Computer
-  attr_reader :mark, :opponent
+  attr_reader :mark
 
   def initialize(mark, board)
     @mark = mark
@@ -12,14 +12,6 @@ class Computer
     @board.available_moves.sample 
   end
  
-  def opponent_mark
-    if @mark == "X"
-      "O"
-    else 
-      "X"
-    end
-  end
-
   def winning_move
   best_play = nil 
 
@@ -36,10 +28,11 @@ class Computer
 
   def block_opponent
   best_play = nil 
-  
+  opponent = @board.get_opponent_mark(@mark)
+
   @board.available_moves.each do |space|
-    @board.mark_board(space, opponent_mark)
-    if @board.player_wins?(opponent_mark)
+    @board.mark_board(space, opponent)
+    if @board.player_wins?(opponent)
       best_play = space
     end
     @board.clear_mark(space)

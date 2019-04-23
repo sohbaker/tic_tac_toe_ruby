@@ -11,7 +11,9 @@ class Board
     [2, 4, 6],
     [0, 4, 8],
   ]
- 
+
+  PLAYER_MARKS = ["X", "O"]
+
   def initialize(board)
     @board_array = board
   end
@@ -25,6 +27,11 @@ class Board
   def clear_mark(move)
     position = move.to_i - 1
     @board_array[position] = move
+  end
+
+  def get_opponent_mark(given_mark)
+    opponent = PLAYER_MARKS.reject{|player_mark| player_mark == given_mark}
+    opponent[0]
   end
 
   def available_moves

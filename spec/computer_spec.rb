@@ -14,10 +14,6 @@ RSpec.describe Computer do
     expect(computer.get_move.nil?).to eq(false)
   end
 
-  it "is able to work out it's opponent's mark" do
-    expect(computer.opponent_mark).to eq("X")
-  end
-  
   it "blocks it's opponent from winning the game" do 
     board = Board.new(x_wins_on_next_move)
     computer = Computer.new("O", board)
