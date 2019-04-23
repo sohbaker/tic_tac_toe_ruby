@@ -21,7 +21,7 @@ RSpec.describe Game do
       game.toggle_player
       game.is_a_tie?
     end
-    expect(game.outcome).to eq(game.display.announce_tie)
+    expect(game.show_outcome).to eq(game.display.announce_tie)
   end
 
   it "knows when a player has won the game" do
@@ -33,6 +33,6 @@ RSpec.describe Game do
       game.complete_move(moves.shift, mark)
       game.toggle_player
     end
-    expect(game.outcome).to eq(game.display.announce_win(mark))
+    expect(game.show_outcome).to eq(game.display.announce_win(mark))
   end
 end
