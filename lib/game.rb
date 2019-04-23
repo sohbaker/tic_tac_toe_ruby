@@ -92,7 +92,7 @@ class Game
     @board.full? && !player_wins?(@current_player.mark)
   end
 
-  def outcome
+  def show_outcome
     system('clear')
     @display.show_board(@board.board_array)
     if is_a_tie?
