@@ -56,7 +56,6 @@ RSpec.describe Display do
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
       game = Game.new(Board.new(tied_game))
-#      game.instance_variable_set(:@board, Board.new(tied_game))
       display = Display.new
 
       expect do
@@ -69,7 +68,6 @@ RSpec.describe Display do
     it "returns 'X wins!' when the game has ended because a player has won" do
       game = Game.new(Board.new(player_has_won))
       game.create_players("hh")
-#      game.instance_variable_set(:@board, Board.new(player_has_won))
       display = Display.new
 
       expect do
