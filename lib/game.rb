@@ -73,7 +73,7 @@ class Game
   end
 
   def player_wins?(mark)
-    @board.current_player_wins?(mark)
+    @board.player_wins?(mark)
   end
 
   def toggle_player

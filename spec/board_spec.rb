@@ -12,7 +12,7 @@ RSpec.describe Board do
     board.mark_board(1, "x")
     board.mark_board(2, "x")
     board.mark_board(3, "x")
-    expect(board.current_player_wins?("x")).to eq(true)
+    expect(board.player_wins?("x")).to eq(true)
   end
 
   it "knows the winning combination and returns false if player has not won" do
@@ -20,7 +20,7 @@ RSpec.describe Board do
     board.mark_board(1, "x")
     board.mark_board(2, "x")
     board.mark_board(3, "x")
-    expect(board.current_player_wins?("o")).to eq(false)
+    expect(board.player_wins?("o")).to eq(false)
   end
 
   it "knows when the game is a tie" do

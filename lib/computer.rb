@@ -24,13 +24,13 @@ class Computer
 
    @board.available_moves.each do |space|
     @board.mark_board(space, @mark)
-    if @board.current_player_wins?(@mark) 
+    if @board.player_wins?(@mark) 
       best_play = space
     end
     @board.clear_mark(space)
     
     @board.mark_board(space, opponent_mark)
-    if @board.current_player_wins?(opponent_mark)
+    if @board.player_wins?(opponent_mark)
       best_play = space
      end
      @board.clear_mark(space)
