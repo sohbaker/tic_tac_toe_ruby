@@ -4,7 +4,7 @@ require "human"
 
 RSpec.describe Game do
  it "knows that the game can continue" do
-   game = Game.new(Board.new(empty_board))
+    game = Game.new(Board.new(empty_board))
     game.instance_variable_set(:@current_player, Human.new("X"))
     game.complete_move(1, "X")
     game.complete_move(2, "O")
