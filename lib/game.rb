@@ -48,6 +48,7 @@ class Game
         toggle_player
       end
     end
+    system('clear')
     show_outcome
   end
 
@@ -94,7 +95,6 @@ class Game
   end
 
   def show_outcome
-    system('clear')
     @display.show_board(@board.board_grid)
     if is_a_tie?
       @display.announce_tie
