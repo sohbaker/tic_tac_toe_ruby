@@ -11,8 +11,15 @@ RSpec.describe Computer do
   end
   
   it "selects an available move from the board" do
+    expect(computer.winning_move).to be_nil
+    expect(computer.block_opponent).to be_nil
     expect(computer.get_move).not_to be_nil
   end
+
+#  it "returns a sampled move" do
+#   expect(computer.winning_move).to be_nil
+#   expect(computer.block_opponent).to be_nil
+#  end
 
   it "blocks it's opponent from winning the game" do 
     x_wins_game_on_next_move = ["O", "X", 3, 4, 5, "O", 7, "X", 9]  
