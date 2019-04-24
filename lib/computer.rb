@@ -7,13 +7,13 @@ class Computer
   end
 
   def get_move
-    return winning_move if winning_move != nil
-    return block_opponent if block_opponent != nil
+    return winning_move if winning_move 
+    return block_opponent if block_opponent 
     @board.available_moves.sample 
   end
  
   def winning_move
-    best_play = nil 
+    best_play = false
 
     @board.available_moves.each do |move|
       @board.mark_board(move, @mark)
@@ -27,7 +27,7 @@ class Computer
   end
 
   def block_opponent
-    best_play = nil 
+    best_play = false 
     opponent = @board.get_opponent_mark(@mark)
 
     @board.available_moves.each do |move|

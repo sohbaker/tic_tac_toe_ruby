@@ -24,9 +24,9 @@ RSpec.describe Computer do
     expect(computer.get_move).to eq(7)
   end
  
-  it "randomly selects an available move from the board when both winning_move and block_opponent evaluate to nil" do
-    expect(computer.winning_move).to be_nil
-    expect(computer.block_opponent).to be_nil
+  it "randomly selects an available move from the board when both winning_move and block_opponent evaluate to false" do
+    expect(computer.winning_move).to eq(false)
+    expect(computer.block_opponent).to eq(false)
     expect(computer.get_move).not_to be_nil
   end
 end
