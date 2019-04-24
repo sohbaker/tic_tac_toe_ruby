@@ -3,10 +3,10 @@ require "game"
 require "display"
 
 RSpec.describe Display do
+  let(:display) { Display.new }
+
   describe "#greet_players" do
     it "greets the players when the game starts" do
-      game = Game.new(Board.new(empty_board))
-      display = Display.new
 
       expect do
         display.greet_players
@@ -16,11 +16,9 @@ RSpec.describe Display do
 
   describe "#show_board" do
     it "shows a board" do
-      game = Game.new(Board.new(empty_board))
-      display = Display.new
 
       expect do
-        display.show_board(game.board.current_board)
+        display.show_board(empty_board)
       end.to output("" "
     1 | 2 | 3
     ---------
@@ -34,7 +32,6 @@ RSpec.describe Display do
     it "prompts the player to make a move" do
       game = Game.new(Board.new(empty_board))
       game.create_players("hh")
-      display = Display.new
 
       expect do
         display.prompt_player(game.current_player.mark)
@@ -45,7 +42,6 @@ RSpec.describe Display do
   describe "#notify_invalid" do
     it "tell the player they have attempted an invalid move" do
       game = Game.new(Board.new(empty_board))
-      display = Display.new
 
       expect do
         display.notify_invalid("move")
@@ -56,7 +52,6 @@ RSpec.describe Display do
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
       game = Game.new(Board.new(tied_game))
-      display = Display.new
 
       expect do
         display.announce_tie
@@ -68,7 +63,6 @@ RSpec.describe Display do
     it "returns 'X wins!' when the game has ended because a player has won" do
       game = Game.new(Board.new(player_has_won))
       game.create_players("hh")
-      display = Display.new
 
       expect do
         display.announce_win(game.current_player.mark)

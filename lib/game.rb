@@ -40,7 +40,7 @@ class Game
   def play_game
     until over?
      system('clear') 
-      @display.show_board(@board.current_board)
+      @display.show_board(@board.board_grid)
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       check_move(move)
@@ -48,6 +48,8 @@ class Game
         toggle_player
       end
     end
+    system('clear')
+    show_outcome
   end
 
   def check_move(move)
@@ -93,8 +95,7 @@ class Game
   end
 
   def show_outcome
-    system('clear')
-    @display.show_board(@board.current_board)
+    @display.show_board(@board.board_grid)
     if is_a_tie?
       @display.announce_tie
     else

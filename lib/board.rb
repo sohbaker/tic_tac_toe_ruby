@@ -1,5 +1,5 @@
 class Board
-  attr_reader :current_board
+  attr_reader :board_grid
 
   WINNING_COMBINATIONS = [
     [0, 1, 2],
@@ -15,28 +15,27 @@ class Board
   PLAYER_MARKS = ["X", "O"]
 
   def initialize(board)
-    @current_board = board
+    @board_grid = board
   end
 
   def mark_board(move, mark)
     position = move.to_i - 1
-    @current_board[position] = mark.upcase
-    @current_board
+    @board_grid[position] = mark.upcase
+    @board_grid
   end
  
   def clear_mark(move)
     position = move.to_i - 1
-    @current_board[position] = move
+    @board_grid[position] = move
   end
 
   def get_opponent_mark(given_mark)
-    opponent = PLAYER_MARKS.reject{|player_mark| player_mark == given_mark}
-    opponent[0]
+    PLAYER_MARKS.find { |player_mark| player_mark != given_mark }
   end
 
   def available_moves
     available_moves = []
-    @current_board.each do |spot|
+    @board_grid.each do |spot|
       if spot != "X" && spot != "O"
         available_moves.push(spot)
       end
@@ -46,7 +45,7 @@ class Board
 
   def player_wins?(mark)
     WINNING_COMBINATIONS.any? do |combination|
-      combination.all? { |position| @current_board[position] == mark.upcase }
+      combination.all? { |position| @board_grid[position] == mark.upcase }
     end
   end
 

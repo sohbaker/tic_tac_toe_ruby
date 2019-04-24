@@ -27,4 +27,9 @@ RSpec.describe Board do
     board = Board.new(tied_game)
     expect(board.full?).to eq(true)
   end
+  
+  it "returns the opponent player's mark when given the current player's mark" do 
+    board = Board.new(empty_board)
+    expect(board.get_opponent_mark("X")).to eq("O")
+  end
 end
