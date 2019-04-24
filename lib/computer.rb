@@ -15,12 +15,12 @@ class Computer
   def winning_move
     best_play = nil 
 
-    @board.available_moves.each do |space|
-      @board.mark_board(space, @mark)
+    @board.available_moves.each do |move|
+      @board.mark_board(move, @mark)
       if @board.player_wins?(@mark) 
-        best_play = space
+        best_play = move
       end
-      @board.clear_mark(space)
+      @board.clear_mark(move)
     end
 
     best_play
@@ -30,12 +30,12 @@ class Computer
     best_play = nil 
     opponent = @board.get_opponent_mark(@mark)
 
-    @board.available_moves.each do |space|
-      @board.mark_board(space, opponent)
+    @board.available_moves.each do |move|
+      @board.mark_board(move, opponent)
       if @board.player_wins?(opponent)
-        best_play = space
+        best_play = move
       end
-      @board.clear_mark(space)
+      @board.clear_mark(move)
     end
  
     best_play

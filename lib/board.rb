@@ -37,7 +37,7 @@ class Board
   def available_moves
     available_moves = []
     @current_board.each do |spot|
-      if spot.upcase != "X" && spot.upcase != "O"
+      if spot != "X" && spot != "O"
         available_moves.push(spot)
       end
     end
