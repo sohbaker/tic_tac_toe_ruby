@@ -19,7 +19,6 @@ This application is written in [Ruby](https://ruby-doc.org/).
 ## To get started
 1. Clone this repository to your local machine as explained [here](https://help.github.com/articles/cloning-a-repository/)
 2. Install gems needed to run the files by typing `$ bundle install` in terminal
-3. Make sure to check that .DS_Store is listed in your `.gitignore` file so that it doesn't get pushed to GitHub.  
 
 ## Testing
 You can manually run all tests using the command `$ rspec`  
