@@ -48,6 +48,7 @@ class Game
         toggle_player
       end
     end
+    show_outcome
   end
 
   def check_move(move)

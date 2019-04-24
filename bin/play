@@ -11,4 +11,3 @@ game = Game.new(board)
 game.welcome_instructions
 game.get_game_type
 game.play_game
-game.show_outcome
