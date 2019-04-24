@@ -30,8 +30,7 @@ class Board
   end
 
   def get_opponent_mark(given_mark)
-    opponent = PLAYER_MARKS.reject{|player_mark| player_mark == given_mark}
-    opponent[0]
+    PLAYER_MARKS.find { |player_mark| player_mark != given_mark }
   end
 
   def available_moves
