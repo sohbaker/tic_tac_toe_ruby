@@ -11,7 +11,7 @@ RSpec.describe Computer do
   end
   
   it "selects an available move from the board" do
-    expect(computer.get_move).should_not be_nil
+    expect(computer.get_move).not_to be_nil
   end
 
   it "blocks it's opponent from winning the game" do 
