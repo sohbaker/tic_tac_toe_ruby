@@ -7,6 +7,7 @@ class Computer
   end
 
   def get_move
+    sleep 0.5
     return winning_move if winning_move 
     return block_opponent if block_opponent 
     @board.available_moves.sample 
