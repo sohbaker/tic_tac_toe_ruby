@@ -57,11 +57,7 @@ class Game
   end
 
   def check_move(move)
-    if valid?(move)
-      complete_move(move, @current_player.mark)
-    else
-      get_new_move()
-    end
+    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move()
   end
 
   def valid?(move)
