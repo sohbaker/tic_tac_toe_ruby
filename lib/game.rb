@@ -48,9 +48,7 @@ class Game
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       check_move(move)
-      if !player_wins?(@current_player.mark)
-        toggle_player()
-      end
+      toggle_player() unless player_wins?(@current_player.mark)
     end
     clear_screen()
     show_outcome()
