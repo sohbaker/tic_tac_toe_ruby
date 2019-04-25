@@ -43,18 +43,17 @@ class Game
 
   def play_game
     until over?
-     clear_screen()
+      clear_screen()
       @display.show_board(@board.board_grid)
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
-      check_move(move)
+      validate_move(move)
       toggle_player() unless player_wins?(@current_player.mark)
     end
-    clear_screen()
     show_outcome()
   end
 
-  def check_move(move)
+  def validate_move(move)
     valid?(move) ? complete_move(move, @current_player.mark) : get_new_move()
   end
 
@@ -65,7 +64,7 @@ class Game
   def get_new_move
     @display.notify_invalid("move")
     new_move = @current_player.get_move
-    check_move(new_move)
+    validate_move(new_move)
   end
 
   def complete_move(position, mark)
@@ -93,6 +92,7 @@ class Game
   end
 
   def show_outcome
+    clear_screen()
     @display.show_board(@board.board_grid)
     is_a_tie? ? @display.announce_tie : @display.announce_win(@current_player.mark)
   end
