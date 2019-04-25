@@ -100,11 +100,7 @@ class Game
 
   def show_outcome
     @display.show_board(@board.board_grid)
-    if is_a_tie?
-      @display.announce_tie
-    else
-      @display.announce_win(@current_player.mark)
-    end
+    is_a_tie? ? @display.announce_tie : @display.announce_win(@current_player.mark)
   end
   
   def clear_screen
