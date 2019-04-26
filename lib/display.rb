@@ -40,4 +40,8 @@ class Display
   def announce_win(mark)
     puts "\n#{mark} wins!"
   end
+
+  def clear_screen
+    system('clear') 
+  end
 end
