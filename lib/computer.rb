@@ -15,14 +15,16 @@ class Computer
  
   def winning_move
     best_play = false
-
-    @board.available_moves.each do |move|
-      @board.mark_board(move, @mark)
-      if @board.player_wins?(@mark) 
-        best_play = move
-      end
-      @board.clear_mark(move)
-    end
+      
+    best_play = win_on_next_move(mark) if win_on_next_move(mark) 
+      
+#    @board.available_moves.each do |move|
+#      @board.mark_board(move, @mark)
+#      if @board.player_wins?(@mark) 
+#        best_play = move
+#      end
+#      @board.clear_mark(move)
+#    end
 
     best_play
   end
@@ -41,4 +43,18 @@ class Computer
  
     best_play
   end
+  
+  def win_on_next_move(mark)
+    can_win = false
+
+    @board.available_moves.each do |move|
+      @board.mark_board(move, mark)
+      if @board.player_wins?(mark)
+        can_win = move
+      end
+      @board.clear_mark(move)
+    end
+    can_win 
+  end
+
 end
