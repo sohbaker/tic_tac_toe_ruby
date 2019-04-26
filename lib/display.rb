@@ -44,4 +44,14 @@ class Display
   def clear_screen
     system('clear') 
   end
+
+  def show_outcome(board, current_player)
+    clear_screen
+    show_board(board.board_grid)
+    is_a_tie?(board, current_player) ? announce_tie : announce_win(current_player.mark)
+  end
+
+  def is_a_tie?(board, current_player)
+    board.full? && !board.player_wins?(current_player.mark)
+  end
 end
