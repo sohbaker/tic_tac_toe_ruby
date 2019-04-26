@@ -14,16 +14,16 @@ class Computer
   end
  
   def winning_move
-    best_play = false
-    best_play = player_can_win_with_this_move(mark) if player_can_win_with_this_move(mark) 
-    best_play
+    move_to_win = false
+    move_to_win = player_can_win_with_this_move(mark) if player_can_win_with_this_move(mark) 
+    move_to_win
   end
 
   def block_opponent
-    best_play = false   
+    move_to_block = false   
     opponent = @board.get_opponent_mark(@mark)
-    best_play = player_can_win_with_this_move(opponent) if player_can_win_with_this_move(opponent) 
-    best_play
+    move_to_block = player_can_win_with_this_move(opponent) if player_can_win_with_this_move(opponent) 
+    move_to_block
   end
   
   def player_can_win_with_this_move(mark)
