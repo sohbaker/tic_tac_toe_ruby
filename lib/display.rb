@@ -46,6 +46,7 @@ class Display
   end
 
   def show_outcome(board, current_player, game) 
+    clear_screen
     show_board(board.board_grid)
     game.is_a_tie? == true ? announce_tie : announce_win(current_player.mark)
   end

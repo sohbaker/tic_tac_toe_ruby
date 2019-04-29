@@ -50,7 +50,6 @@ class Game
       validate_move(move)
       toggle_player unless player_wins?(@current_player.mark)
     end
-    clear_screen
     @display.show_outcome(@board, @current_player, self) 
   end
 
