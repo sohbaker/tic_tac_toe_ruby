@@ -36,7 +36,7 @@ class Game
       @player2 = Computer.new("O", @board)
     else
       @display.notify_invalid("choice")
-      get_game_type()
+      get_game_type
     end
     @current_player = @player1
   end
@@ -48,14 +48,14 @@ class Game
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       validate_move(move)
-      toggle_player() unless player_wins?(@current_player.mark)
+      toggle_player unless player_wins?(@current_player.mark)
     end
     clear_screen
     @display.show_outcome(@board, @current_player, self) 
   end
 
   def validate_move(move)
-    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move()
+    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move
   end
 
   def valid?(move)
