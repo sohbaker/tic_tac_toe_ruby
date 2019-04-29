@@ -50,7 +50,8 @@ class Game
       validate_move(move)
       toggle_player() unless player_wins?(@current_player.mark)
     end
-    @display.show_outcome(@board, @current_player)
+    clear_screen
+    @display.show_outcome(@board, @current_player, self) 
   end
 
   def validate_move(move)
