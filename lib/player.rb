@@ -2,16 +2,15 @@ require "human"
 require "computer"
 
 class Player  
-  def initialize(game_type)
+  def initialize(game_type, board
     @type = game_type 
+    @board = board
   end
  
   def validate_type
-    if @type == "hh" || @type == "hc"
-      @type 
-    else 
+    until @type == "hh" || @type == "hc"
       @display.notify_invalid("choice")
-      @type = @display.get_game_type
+      @type = @display.take_input
     end
   end 
 
