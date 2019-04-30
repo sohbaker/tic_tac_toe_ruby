@@ -19,11 +19,9 @@ class Players
 
   def create_players
     if @type == "hh"
-      @player_1 = Human.new("X")
-      @player_2 = Human.new("O")
+      @player_1, @player_2 = Human.new("X"), Human.new("O")
     else 
-      @player_1 = Human.new("X")
-      @player_2 = Computer.new("O", @board)
+      @player_1, @player_2 = Human.new("X"), Computer.new("O", @board) 
     end
   end
 end
