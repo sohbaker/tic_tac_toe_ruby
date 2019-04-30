@@ -6,39 +6,12 @@ require "human"
 class Game
   attr_reader :current_player, :board, :display, :player1, :player2, :mark
   
-  def initialize(board, display)
+  def initialize(board, display, player_1, player_2)
     @board = board
     @display = display 
-  end
-
-  def launch_new_game
-    show_welcome_instructions
-    type = get_game_type
-    create_players(type)
-  end
-    
-  def show_welcome_instructions
-    @display.greet_players
-    @display.show_rules
-  end
-
-  def get_game_type
-    @display.choose_game_type
-    type = @display.take_input
-  end
-
-  def create_players(game_type)
-    if game_type == "hh"
-      @player1 = Human.new("X")
-      @player2 = Human.new("O")
-    elsif game_type == "hc"
-      @player1 = Human.new("X")
-      @player2 = Computer.new("O", @board)
-    else
-      @display.notify_invalid("choice")
-      get_game_type()
-    end
-    @current_player = @player1
+    @player_1 = player_1
+    @player_2 = player_2
+    @current_player = @player_1
   end
 
   def play_game
@@ -48,13 +21,13 @@ class Game
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       validate_move(move)
-      toggle_player() unless player_wins?(@current_player.mark)
+      toggle_player unless player_wins?(@current_player.mark)
     end
-    @display.show_outcome(@board, @current_player)
+    show_outcome    
   end
 
   def validate_move(move)
-    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move()
+    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move
   end
 
   def valid?(move)
@@ -76,10 +49,10 @@ class Game
   end
 
   def toggle_player
-    if @current_player == @player1
-      @current_player = @player2
+    if @current_player == @player_1
+      @current_player = @player_2
     else
-      @current_player = @player1
+      @current_player = @player_1
     end
   end
 
@@ -89,5 +62,9 @@ class Game
 
   def is_a_tie?
     @board.full? && !player_wins?(@current_player.mark)
+  end
+  
+  def show_outcome
+    @display.show_outcome(@board, @current_player) 
   end
 end
