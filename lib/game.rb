@@ -1,8 +1,3 @@
-require "board"
-require "display"
-require "computer"
-require "human"
-
 class Game
   attr_reader :current_player, :board, :display, :player1, :player2, :mark
   
