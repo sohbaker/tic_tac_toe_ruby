@@ -7,12 +7,16 @@ class Computer
   end
 
   def get_move
-    sleep 0.5
+    pause_before_taking_turn
     return winning_move if winning_move 
     return block_opponent if block_opponent 
     random_move
   end
  
+  def pause_before_taking_turn
+    sleep 0.5
+  end
+
   def winning_move
     move = false
     move = player_can_win_with_this_move(mark) if player_can_win_with_this_move(mark) 
