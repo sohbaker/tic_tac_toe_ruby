@@ -1,7 +1,7 @@
 require "human"
 require "computer"
 
-class Player  
+class Players
   attr_reader :player_1, :player_2
   
   def initialize(game_type, board, display)
@@ -19,11 +19,11 @@ class Player
 
   def create_players
     if @type == "hh"
-      player_1 = Human.new("X")
-      player_2 = Human.new("O")
+      @player_1 = Human.new("X")
+      @player_2 = Human.new("O")
     else 
-      player_1 = Human.new("X")
-      player_2 = Computer.new("O", @board)
+      @player_1 = Human.new("X")
+      @player_2 = Computer.new("O", @board)
     end
-  end 
+  end
 end
