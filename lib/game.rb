@@ -6,9 +6,12 @@ require "human"
 class Game
   attr_reader :current_player, :board, :display, :player1, :player2, :mark
   
-  def initialize(board, display)
+  def initialize(board, display, player_1, player_2)
     @board = board
     @display = display 
+    @player_1 = player_1
+    @player_2 = player_2
+    @current_player = player_1
   end
 
   def launch_new_game
