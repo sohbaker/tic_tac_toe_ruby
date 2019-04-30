@@ -10,7 +10,7 @@ class Computer
     sleep 0.5
     return winning_move if winning_move 
     return block_opponent if block_opponent 
-    @board.available_moves.sample 
+    random_move
   end
  
   def winning_move
@@ -34,5 +34,9 @@ class Computer
       @board.clear_mark(move)
     end
     can_win 
+  end
+
+  def random_move
+    @board.available_moves.sample 
   end
 end
