@@ -14,36 +14,6 @@ class Game
     @current_player = player_1
   end
 
-  def launch_new_game
-    show_welcome_instructions
-    type = get_game_type
-    create_players(type)
-  end
-    
-  def show_welcome_instructions
-    @display.greet_players
-    @display.show_rules
-  end
-
-  def get_game_type
-    @display.choose_game_type
-    type = @display.take_input
-  end
-
-  def create_players(game_type)
-    if game_type == "hh"
-      @player1 = Human.new("X")
-      @player2 = Human.new("O")
-    elsif game_type == "hc"
-      @player1 = Human.new("X")
-      @player2 = Computer.new("O", @board)
-    else
-      @display.notify_invalid("choice")
-      get_game_type
-    end
-    @current_player = @player1
-  end
-
   def play_game
     until over?
       @display.clear_screen
@@ -79,10 +49,10 @@ class Game
   end
 
   def toggle_player
-    if @current_player == @player1
-      @current_player = @player2
+    if @current_player == @player_1
+      @current_player = @player_2
     else
-      @current_player = @player1
+      @current_player = @player_1
     end
   end
 
