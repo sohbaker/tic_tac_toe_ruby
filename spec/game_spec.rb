@@ -34,5 +34,13 @@ RSpec.describe Game do
 
    game.play_game
    expect(game).to have_received(:show_outcome)
-  end
+ end
+
+ it "receives a message when the game ends with a win" do 
+   game = Game.new(Board.new(empty_board), StubDisplay.new, HumanDouble.new("X", ["1","4","7"]), HumanDouble.new("O", ["2","3"]))
+   allow(game).to receive(:show_outcome)
+
+   game.play_game
+   expect(game).to have_received(:show_outcome)
+ end
 end
