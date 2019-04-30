@@ -5,4 +5,8 @@ class HumanDouble
     @mark = mark
     @moves = moves
   end
+  
+  def get_move
+    @moves.shift
+  end
 end

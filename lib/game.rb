@@ -23,7 +23,7 @@ class Game
       validate_move(move)
       toggle_player unless player_wins?(@current_player.mark)
     end
-    @display.show_outcome(@board, @current_player) 
+    show_outcome    
   end
 
   def validate_move(move)
@@ -62,5 +62,9 @@ class Game
 
   def is_a_tie?
     @board.full? && !player_wins?(@current_player.mark)
+  end
+  
+  def show_outcome
+    @display.show_outcome(@board, @current_player) 
   end
 end
