@@ -6,9 +6,9 @@ require "human"
 class Game
   attr_reader :current_player, :board, :display, :player1, :player2, :mark
   
-  def initialize(board)
+  def initialize(board, display)
     @board = board
-    @display = Display.new
+    @display = display 
   end
 
   def launch_new_game
@@ -43,14 +43,14 @@ class Game
 
   def play_game
     until over?
-      clear_screen()
+      @display.clear_screen
       @display.show_board(@board.board_grid)
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       validate_move(move)
       toggle_player() unless player_wins?(@current_player.mark)
     end
-    show_outcome()
+    @display.show_outcome(@board, @current_player)
   end
 
   def validate_move(move)
@@ -89,15 +89,5 @@ class Game
 
   def is_a_tie?
     @board.full? && !player_wins?(@current_player.mark)
-  end
-
-  def show_outcome
-    clear_screen()
-    @display.show_board(@board.board_grid)
-    is_a_tie? ? @display.announce_tie : @display.announce_win(@current_player.mark)
-  end
-  
-  def clear_screen
-    system('clear') 
   end
 end

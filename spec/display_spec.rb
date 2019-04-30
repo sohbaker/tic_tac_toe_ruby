@@ -2,14 +2,16 @@ require "spec_helper"
 require "game"
 require "display"
 
+class StubDisplay
+end
+
 RSpec.describe Display do
-  let(:display) { Display.new }
 
   describe "#greet_players" do
     it "greets the players when the game starts" do
 
       expect do
-        display.greet_players
+        Display.new.greet_players
       end.to output("Welcome to Tic Tac Toe\n").to_stdout
     end
   end
@@ -18,7 +20,7 @@ RSpec.describe Display do
     it "shows a board" do
 
       expect do
-        display.show_board(empty_board)
+        Display.new.show_board(empty_board)
       end.to output("" "
     1 | 2 | 3
     ---------
@@ -30,42 +32,38 @@ RSpec.describe Display do
 
   describe "#prompt_player" do
     it "prompts the player to make a move" do
-      game = Game.new(Board.new(empty_board))
+      game = Game.new(Board.new(empty_board), StubDisplay.new)
       game.create_players("hh")
 
       expect do
-        display.prompt_player(game.current_player.mark)
+        Display.new.prompt_player(game.current_player.mark)
       end.to output("\nPlayer X, make a move: ").to_stdout
     end
   end
 
   describe "#notify_invalid" do
     it "tell the player they have attempted an invalid move" do
-      game = Game.new(Board.new(empty_board))
-
       expect do
-        display.notify_invalid("move")
+        Display.new.notify_invalid("move")
       end.to output("Invalid move\n").to_stdout
     end
   end
 
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
-      game = Game.new(Board.new(tied_game))
-
       expect do
-        display.announce_tie
+        Display.new.announce_tie
       end.to output("\nIt's a tie!\n").to_stdout
     end
   end
 
   describe "#announce_win" do
     it "returns 'X wins!' when the game has ended because a player has won" do
-      game = Game.new(Board.new(player_has_won))
+      game = Game.new(Board.new(player_has_won), StubDisplay.new)
       game.create_players("hh")
 
       expect do
-        display.announce_win(game.current_player.mark)
+        Display.new.announce_win(game.current_player.mark)
       end.to output("\nX wins!\n").to_stdout
     end
   end
