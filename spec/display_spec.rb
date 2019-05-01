@@ -1,6 +1,8 @@
 require "spec_helper"
 require "game"
 require "display"
+require "human_double"
+require "board_double"
 
 class StubDisplay
 end
@@ -32,7 +34,7 @@ RSpec.describe Display do
 
   describe "#prompt_player" do
     it "prompts the player to make a move" do
-      game = Game.new(Board.new(empty_board), StubDisplay.new, Human.new("X"), Human.new("O"))
+      game = Game.new(BoardDouble.new(empty_board), StubDisplay.new, HumanDouble.new("X", self), HumanDouble.new("O", self))
 
       expect do
         Display.new.prompt_player(game.current_player.mark)
@@ -58,7 +60,7 @@ RSpec.describe Display do
 
   describe "#announce_win" do
     it "returns 'X wins!' when the game has ended because a player has won" do
-      game = Game.new(Board.new(player_has_won), StubDisplay.new, Human.new("X"), Human.new("O"))
+      game = Game.new(BoardDouble.new(player_has_won), StubDisplay.new, HumanDouble.new("X", self), HumanDouble.new("O", self))
 
       expect do
         Display.new.announce_win(game.current_player.mark)

@@ -1,11 +1,9 @@
-require "display"
-
 class Human
   attr_reader :mark
 
-  def initialize(mark)
+  def initialize(mark, display)
     @mark = mark
-    @display = Display.new
+    @display = display 
   end
 
   def get_move
