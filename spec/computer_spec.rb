@@ -23,10 +23,14 @@ RSpec.describe Computer do
   end
   
   it "plays a move to win the game when possible" do 
-    o_wins_game_on_next_move = ["O", "X", 3, "O", 5, 6, 7, 8, "X"]
-    board = Board.new(o_wins_game_on_next_move)
-    computer = Computer.new("O", board)
-    expect(computer.get_move).to eq(7)
+    opponent = HumanDouble.new("X", [2,9])
+    moves = [1,4]
+    board.mark_board(opponent.get_move, opponent.mark)
+    board.mark_board(moves.shift, computer.mark)
+    board.mark_board(opponent.get_move, opponent.mark)
+    board.mark_board(moves.shift, computer.mark)
+
+    expect(computer.get_move).to eq("7")
   end
  
   it "randomly selects an available move from the board when both winning_move and block_opponent evaluate to false" do
