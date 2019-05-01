@@ -6,7 +6,7 @@ module Player
     if type == "hh"
       players = [Human.new("X", display), Human.new("O", display)]
     elsif type == "hc"
-      players = [Human.new("X", display), Computer.new("O", board)]
+      players = [Human.new("X", display), Computer.new("O", board, display)]
     end
 
     players

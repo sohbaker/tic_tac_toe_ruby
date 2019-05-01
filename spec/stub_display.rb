@@ -16,6 +16,9 @@ class StubDisplay
 
   def notify_invalid(selection)
   end
+
+  def pause_message
+  end
 end
 
 

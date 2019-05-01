@@ -39,6 +39,10 @@ class Display
     input
   end
 
+  def pause_message
+    puts "...thinking..."
+  end
+
   def notify_invalid(x)
     puts "Invalid #{x}"
   end
