@@ -19,7 +19,7 @@ RSpec.describe Computer do
     board.mark_board(opponent.get_move, opponent.mark)
     board.mark_board(moves.shift, computer.mark)
 
-    expect(computer.get_move).to eq("5")
+    expect(computer.get_move).to eq(5)
   end
   
   it "plays a move to win the game when possible" do 
@@ -30,7 +30,7 @@ RSpec.describe Computer do
     board.mark_board(opponent.get_move, opponent.mark)
     board.mark_board(moves.shift, computer.mark)
 
-    expect(computer.get_move).to eq("7")
+    expect(computer.get_move).to eq(7)
   end
  
   it "selects a random move if there is no winning move or move to block" do

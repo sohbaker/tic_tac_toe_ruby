@@ -5,7 +5,8 @@ RSpec.describe Board do
   let(:board) { Board.new }
   
   it "adds a mark to a board" do
-    expect(board.mark_board(1, "x")).to eq(["X", "2", "3", "4", "5", "6", "7", "8", "9"])
+    board.mark_board(1, "x") 
+    expect(board.grid.include?("X")).to eq(true)
   end
 
   it "knows the winning combination and returns true if player has won" do

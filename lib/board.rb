@@ -15,9 +15,9 @@ class Board
   PLAYER_MARKS = ["X", "O"]
 
   def initialize
-    @grid = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    @grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
-
+  
   def mark_board(move, mark)
     position = move.to_i - 1
     @grid[position] = mark.upcase
@@ -41,6 +41,11 @@ class Board
       end
     end
     available_moves
+  end
+
+  def valid?(move)
+    move_as_integer  = move.to_i
+    available_moves.include?(move_as_integer)
   end
 
   def player_wins?(mark)
