@@ -16,7 +16,7 @@ class Computer
  
   def pause_before_taking_turn
     @display.pause_message
-    sleep 0.5
+    sleep 0.4
   end
 
   def winning_move
