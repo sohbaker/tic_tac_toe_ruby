@@ -19,18 +19,18 @@ class Computer
 
   def winning_move
     move = false
-    move = player_can_win_with_this_move(mark) if player_can_win_with_this_move(mark) 
+    move = player_winning_move(mark) if player_winning_move(mark) 
     move
   end
 
   def block_opponent
     move = false   
     opponent = @board.get_opponent_mark(@mark)
-    move = player_can_win_with_this_move(opponent) if player_can_win_with_this_move(opponent) 
+    move = player_winning_move(opponent) if player_winning_move(opponent) 
     move
   end
   
-  def player_can_win_with_this_move(mark)
+  def player_winning_move(mark)
     can_win = false
     @board.available_moves.each do |move|
       @board.mark_board(move, mark)
