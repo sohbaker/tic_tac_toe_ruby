@@ -1,9 +1,10 @@
 class Computer
   attr_reader :mark
 
-  def initialize(mark, board)
+  def initialize(mark, board, display)
     @mark = mark
     @board = board
+    @display = display
   end
 
   def get_move
@@ -14,7 +15,8 @@ class Computer
   end
  
   def pause_before_taking_turn
-    sleep 0.5
+    @display.pause_message
+    sleep 0.4
   end
 
   def winning_move

@@ -2,10 +2,12 @@ require "spec_helper"
 require "board"
 require "human_double"
 require "computer"
+require "stub_display"
 
 RSpec.describe Computer do
   let!(:board) { Board.new }
-  let!(:computer) { Computer.new("O", board) }
+  let(:display) { StubDisplay.new }
+  let!(:computer) { Computer.new("O", board, display) }
 
   it "creates a new computer player with a mark" do
     expect(computer.mark).to eq("O")
