@@ -14,8 +14,8 @@ class Board
 
   PLAYER_MARKS = ["X", "O"]
 
-  def initialize(board)
-    @grid = board
+  def initialize
+    @grid = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
   def mark_board(move, mark)

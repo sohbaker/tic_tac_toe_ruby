@@ -4,7 +4,7 @@ require "human_double"
 require "computer"
 
 RSpec.describe Computer do
-  let!(:board) {Board.new(empty_board)}
+  let!(:board) {Board.new}
   let!(:computer) {Computer.new("O", board)}
 
   it "creates a new computer player with a mark" do
