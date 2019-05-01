@@ -55,9 +55,9 @@ class Display
     system('clear') 
   end
 
-  def show_outcome(grid, mark) 
+  def show_outcome(board, mark) 
     clear_screen
-    show_board(grid)
+    show_board(board.grid)
     board.player_wins?(mark) ? announce_win(mark) : announce_tie  
   end
 end

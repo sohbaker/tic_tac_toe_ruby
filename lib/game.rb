@@ -56,6 +56,6 @@ class Game
   end
   
   def show_outcome
-    @display.show_outcome(@board.grid, @current_player.mark) 
+    @display.show_outcome(@board, @current_player.mark) 
   end
 end
