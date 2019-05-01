@@ -33,7 +33,7 @@ RSpec.describe Computer do
     expect(computer.get_move).to eq("7")
   end
  
-  it "randomly selects an available move from the board when both winning_move and block_opponent evaluate to false" do
+  it "selects a random move if there is no winning move or move to block" do
     allow(computer).to receive(:random_move)
     computer.get_move 
 
