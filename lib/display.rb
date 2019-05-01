@@ -1,11 +1,11 @@
 class Display
-  def show_board(board)
+  def show_board(grid)
     puts "" "
-    #{board[0]} | #{board[1]} | #{board[2]}
+    #{grid[0]} | #{grid[1]} | #{grid[2]}
     ---------
-    #{board[3]} | #{board[4]} | #{board[5]}
+    #{grid[3]} | #{grid[4]} | #{grid[5]}
     ---------
-    #{board[6]} | #{board[7]} | #{board[8]}" ""
+    #{grid[6]} | #{grid[7]} | #{grid[8]}" ""
   end
 
   def show_welcome_instructions
@@ -55,10 +55,9 @@ class Display
     system('clear') 
   end
 
-  def show_outcome(board, current_player) 
+  def show_outcome(grid, mark) 
     clear_screen
-    show_board(board.board_grid)
-    mark = current_player.mark
+    show_board(grid)
     board.player_wins?(mark) ? announce_win(mark) : announce_tie  
   end
 end

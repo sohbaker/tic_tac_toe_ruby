@@ -22,11 +22,7 @@ class Game
   end
 
   def validate_move(move)
-    valid?(move) ? complete_move(move, @current_player.mark) : get_new_move
-  end
-
-  def valid?(move)
-    @board.available_moves.include?(move)
+    board.valid?(move) ? complete_move(move, @current_player.mark) : get_new_move
   end
 
   def get_new_move
@@ -60,6 +56,6 @@ class Game
   end
   
   def show_outcome
-    @display.show_outcome(@board, @current_player) 
+    @display.show_outcome(@board.grid, @current_player.mark) 
   end
 end
