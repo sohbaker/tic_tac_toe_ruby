@@ -1,6 +1,7 @@
 require "spec_helper"
-require "computer"
 require "board"
+require "human_double"
+require "computer"
 
 RSpec.describe Computer do
   let(:board) {Board.new(empty_board)}
@@ -11,10 +12,14 @@ RSpec.describe Computer do
   end
  
   it "blocks it's opponent from winning the game" do 
-    x_wins_game_on_next_move = ["O", "X", 3, 4, 5, "O", 7, "X", 9]  
-    board = Board.new(x_wins_game_on_next_move)
-    computer = Computer.new("O", board)
-    expect(computer.get_move).to eq(5)
+    opponent = HumanDouble.new("X", [2,8])
+    moves = [1,6]
+    board.mark_board(opponent.get_move, opponent.mark)
+    board.mark_board(moves.shift, computer.mark)
+    board.mark_board(opponent.get_move, opponent.mark)
+    board.mark_board(moves.shift, computer.mark)
+
+    expect(computer.get_move).to eq("5")
   end
   
   it "plays a move to win the game when possible" do 
