@@ -12,7 +12,7 @@ class Game
   def play_game
     until over?
       @display.clear_screen
-      @display.show_board(@board.board_grid)
+      @display.show_board(@board.grid)
       @display.prompt_player(@current_player.mark)
       move = @current_player.get_move
       validate_move(move)
