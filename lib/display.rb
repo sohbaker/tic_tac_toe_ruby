@@ -16,6 +16,8 @@ class Display
     prompt_choose_game_type
     if take_input == 'hh'
       GameType::HUMANHUMAN
+    else 
+      GameType::HUMANCOMPUTER
     end
   end
 

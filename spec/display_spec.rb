@@ -34,6 +34,9 @@ RSpec.describe Display do
     end
 
     it "returns human computer game type" do
+      allow($stdin).to receive(:gets).and_return("hc")
+      display = Display.new
+      expect(display.get_game_type).to eq(GameType::HUMANCOMPUTER)
     end
   end
 
