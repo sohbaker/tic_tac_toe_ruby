@@ -8,12 +8,14 @@ require "game_type"
 require "stringio"
 
 RSpec.describe Display do
-  
+ 
+  let(:display) { Display.new }
+
   describe "#greet_players" do
     it "greets the players when the game starts" do
 
       expect do
-        Display.new.greet_players
+        display.greet_players
       end.to output("Welcome to Tic Tac Toe\n").to_stdout
     end
   end
@@ -21,7 +23,7 @@ RSpec.describe Display do
   describe "#prompt_choose_game_type" do 
     it "prompts user to select a game type" do 
       expect do 
-        Display.new.prompt_choose_game_type
+        display.prompt_choose_game_type
       end.to output("Type 'hh' to play Human vs Human. Type 'hc' to play Human vs Computer\n").to_stdout
     end
   end
@@ -29,13 +31,11 @@ RSpec.describe Display do
   describe "#get_game_type" do 
     it "returns human human game type" do
       allow($stdin).to receive(:gets).and_return("hh")
-      display = Display.new
       expect(display.get_game_type).to eq(GameType::HUMANHUMAN)
     end
 
     it "returns human computer game type" do
       allow($stdin).to receive(:gets).and_return("hc")
-      display = Display.new
       expect(display.get_game_type).to eq(GameType::HUMANCOMPUTER)
     end
   end
@@ -44,7 +44,7 @@ describe "#show_board" do
     it "shows a board" do
 
       expect do
-        Display.new.show_board(empty_board)
+        display.show_board(empty_board)
       end.to output("" "
     1 | 2 | 3
     ---------
@@ -59,7 +59,7 @@ describe "#show_board" do
       game = Game.new(BoardDouble.new(empty_board), StubDisplay.new, HumanDouble.new("X", self), HumanDouble.new("O", self))
 
       expect do
-        Display.new.prompt_player(game.current_player.mark)
+        display.prompt_player(game.current_player.mark)
       end.to output("\nPlayer X, make a move: ").to_stdout
     end
   end
@@ -67,7 +67,7 @@ describe "#show_board" do
   describe "#notify_invalid" do
     it "tell the player they have attempted an invalid move" do
       expect do
-        Display.new.notify_invalid("move")
+        display.notify_invalid("move")
       end.to output("Invalid move\n").to_stdout
     end
   end
@@ -75,7 +75,7 @@ describe "#show_board" do
   describe "#announce_tie" do
     it "returns 'it's a tie' when the game has ended and resulted in a tie" do
       expect do
-        Display.new.announce_tie
+        display.announce_tie
       end.to output("\nIt's a tie!\n").to_stdout
     end
   end
@@ -85,7 +85,7 @@ describe "#show_board" do
       game = Game.new(BoardDouble.new(player_has_won), StubDisplay.new, HumanDouble.new("X", self), HumanDouble.new("O", self))
 
       expect do
-        Display.new.announce_win(game.current_player.mark)
+        display.announce_win(game.current_player.mark)
       end.to output("\nX wins!\n").to_stdout
     end
   end
