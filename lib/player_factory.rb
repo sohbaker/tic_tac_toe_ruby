@@ -1,7 +1,7 @@
 require "human"
 require "computer"
 
-module Player
+module PlayerFactory
   def self.generate(type, board, display)
     if type == "hh"
       players = [Human.new("X", display), Human.new("O", display)]
