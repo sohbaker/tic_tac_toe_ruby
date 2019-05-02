@@ -6,17 +6,16 @@ $: << File.join(File.dirname(__FILE__), "..", "lib")
 
 require "display"
 require "board"
-require "player_module"
+require "player_factory"
 require "game"
 
 display = Display.new
 board = Board.new
 
 display.show_welcome_instructions
-display.prompt_choose_game_type
 type = display.get_game_type
 
-players = Player.generate(type, board, display)
+players = PlayerFactory.generate(type, board, display)
 player_1 = players[0]
 player_2 = players[1]
 

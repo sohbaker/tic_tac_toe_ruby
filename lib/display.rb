@@ -13,7 +13,10 @@ class Display
   end
 
   def get_game_type
-    take_input
+    prompt_choose_game_type
+    if take_input == 'hh'
+      GameType::HUMANHUMAN
+    end
   end
 
   def prompt_choose_game_type
@@ -34,7 +37,7 @@ class Display
   end
 
   def take_input
-    gets.chomp
+    $stdin.gets.chomp
   end
 
   def pause_message

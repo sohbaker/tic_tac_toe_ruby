@@ -4,9 +4,11 @@ require "display"
 require "human_double"
 require "board_double"
 require "stub_display"
+require "game_type"
+require "stringio"
 
 RSpec.describe Display do
-
+  
   describe "#greet_players" do
     it "greets the players when the game starts" do
 
@@ -24,7 +26,18 @@ RSpec.describe Display do
     end
   end
   
-  describe "#show_board" do
+  describe "#get_game_type" do 
+    it "returns human human game type" do
+      allow($stdin).to receive(:gets).and_return("hh")
+      display = Display.new
+      expect(display.get_game_type).to eq(GameType::HUMANHUMAN)
+    end
+
+    it "returns human computer game type" do
+    end
+  end
+
+describe "#show_board" do
     it "shows a board" do
 
       expect do
