@@ -3,9 +3,7 @@ require "game"
 require "display"
 require "human_double"
 require "board_double"
-
-class StubDisplay
-end
+require "stub_display"
 
 RSpec.describe Display do
 
@@ -17,7 +15,15 @@ RSpec.describe Display do
       end.to output("Welcome to Tic Tac Toe\n").to_stdout
     end
   end
-
+ 
+  describe "#prompt_choose_game_type" do 
+    it "prompts user to select a game type" do 
+      expect do 
+        Display.new.prompt_choose_game_type
+      end.to output("Type 'hh' to play Human vs Human. Type 'hc' to play Human vs Computer\n").to_stdout
+    end
+  end
+  
   describe "#show_board" do
     it "shows a board" do
 

@@ -13,6 +13,7 @@ display = Display.new
 board = Board.new
 
 display.show_welcome_instructions
+display.prompt_choose_game_type
 type = display.get_game_type
 
 players = Player.generate(type, board, display)
