@@ -29,12 +29,12 @@ RSpec.describe Display do
   end
   
   describe "#get_game_type" do 
-    it "returns human human game type" do
+    it "returns human vs human game type" do
       allow($stdin).to receive(:gets).and_return("hh")
       expect(display.get_game_type).to eq(GameType::HUMANHUMAN)
     end
 
-    it "returns human computer game type" do
+    it "returns human vs computer game type" do
       allow($stdin).to receive(:gets).and_return("hc")
       expect(display.get_game_type).to eq(GameType::HUMANCOMPUTER)
     end
