@@ -3,7 +3,6 @@ require "game"
 require "human_double"
 require "stub_display"
 require "board"
-require "computer"
 
 RSpec.describe Game do
   let(:board) { Board.new }
