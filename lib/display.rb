@@ -1,13 +1,4 @@
 class Display
-  def show_board(grid)
-    puts "" "
-    #{grid[0]} | #{grid[1]} | #{grid[2]}
-    ---------
-    #{grid[3]} | #{grid[4]} | #{grid[5]}
-    ---------
-    #{grid[6]} | #{grid[7]} | #{grid[8]}" ""
-  end
-
   def show_welcome_instructions
     greet_players
     show_rules
@@ -22,12 +13,25 @@ class Display
   end
 
   def get_game_type
-    choose_game_type
-    type = take_input
+    prompt_choose_game_type
+    if take_input == 'hh'
+      GameType::HUMANHUMAN
+    else 
+      GameType::HUMANCOMPUTER
+    end
   end
 
-  def choose_game_type
+  def prompt_choose_game_type
     puts "Type 'hh' to play Human vs Human. Type 'hc' to play Human vs Computer\n"
+  end
+
+  def show_board(grid)
+    puts "" "
+    #{grid[0]} | #{grid[1]} | #{grid[2]}
+    ---------
+    #{grid[3]} | #{grid[4]} | #{grid[5]}
+    ---------
+    #{grid[6]} | #{grid[7]} | #{grid[8]}" ""
   end
   
   def prompt_player(mark)
@@ -35,8 +39,7 @@ class Display
   end
 
   def take_input
-    input = gets.chomp
-    input
+    $stdin.gets.chomp
   end
 
   def pause_message

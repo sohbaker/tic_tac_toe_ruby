@@ -6,7 +6,10 @@ require "stub_display"
 RSpec.describe Game do
  it "knows that the game can continue" do
    game = Game.new(Board.new, StubDisplay.new, HumanDouble.new("X", ["1"]), HumanDouble.new("O", ["2"]))
-    expect(game.over?).to eq(false)
+   p game.player_1
+   p game.player_2
+   
+   expect(game.over?).to eq(false)
   end
 
  it "receives a message when the game ends in a tie" do 

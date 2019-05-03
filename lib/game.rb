@@ -1,11 +1,11 @@
 class Game
-  attr_reader :current_player, :board, :display, :player1, :player2, :mark
+  attr_reader :current_player, :board, :display, :player_1, :player_2, :mark
   
-  def initialize(board, display, player_1, player_2)
+  def initialize(board, display, *players)
     @board = board
     @display = display 
-    @player_1 = player_1
-    @player_2 = player_2
+    @player_1 = players.shift 
+    @player_2 = players.shift 
     @current_player = @player_1
   end
 
