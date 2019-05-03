@@ -44,7 +44,7 @@ class Board
   end
 
   def valid?(move)
-    move_as_integer  = move.to_i
+    move_as_integer = move.to_i
     available_moves.include?(move_as_integer)
   end
 

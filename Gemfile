@@ -6,4 +6,5 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard"
   gem "simplecov", require: false
+  gem "colorize"
 end
